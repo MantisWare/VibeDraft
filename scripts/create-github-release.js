@@ -46,22 +46,22 @@ function checkGhAuth() {
  */
 async function getReleaseNotes(version) {
   const changelogPath = path.join(REPO_ROOT, 'CHANGELOG.md');
-  
+
   if (!(await fs.pathExists(changelogPath))) {
     return `Release v${version}`;
   }
 
   try {
     const changelog = await fs.readFile(changelogPath, 'utf-8');
-    
+
     // Try to extract the section for this version
     const versionPattern = new RegExp(`## \\[?${version}\\]?[\\s\\S]*?(?=## \\[?\\d|$)`, 'i');
     const match = changelog.match(versionPattern);
-    
+
     if (match) {
       return match[0].trim();
     }
-    
+
     return `Release v${version}`;
   } catch {
     return `Release v${version}`;
@@ -82,15 +82,15 @@ async function createRelease(version, packages, isDraft = false, isPrerelease = 
   // Build gh release create command
   const tag = `v${version}`;
   let cmd = `gh release create ${tag}`;
-  
+
   // Add flags
   cmd += ` --title "VibeDraft v${version}"`;
   cmd += ` --notes-file "${notesFile}"`;
-  
+
   if (isDraft) {
     cmd += ' --draft';
   }
-  
+
   if (isPrerelease) {
     cmd += ' --prerelease';
   }
@@ -103,18 +103,18 @@ async function createRelease(version, packages, isDraft = false, isPrerelease = 
   console.log(chalk.dim(`\nExecuting: ${cmd}\n`));
 
   try {
-    const output = execSync(cmd, { 
+    const output = execSync(cmd, {
       cwd: REPO_ROOT,
       encoding: 'utf-8',
       stdio: 'pipe'
     });
-    
+
     console.log(chalk.green('✅ Release created successfully!\n'));
     console.log(output);
-    
+
     // Cleanup notes file
     await fs.remove(notesFile);
-    
+
     return true;
   } catch (error) {
     console.error(chalk.red('❌ Failed to create release:'));
@@ -212,4 +212,3 @@ main().catch((error) => {
   }
   process.exit(1);
 });
-

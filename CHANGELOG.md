@@ -31,6 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Resolved GitHub release dependency for first-time users
 - Template download failures now gracefully fallback to local templates
+- Fixed ZIP file creation using proper `addLocalFolder()` method for correct archive format
+- Fixed script permission handling to properly use file handle API and set correct executable permissions
 
 ## [1.0.0] - 2025-10-09
 

@@ -45,7 +45,7 @@ const AGENT_CONFIG = {
 function convertMarkdownToToml(mdContent, scriptPath, argPlaceholder) {
   // Extract description from frontmatter
   const descMatch = mdContent.match(/^---\s*\ndescription:\s*(.+?)\n---/s);
-  const description = descMatch ? descMatch[1].trim().replace(/^(["'])|["']$/g, '') : 'VibeDraft command';
+  const description = descMatch ? descMatch[1].trim().replace(/^["']/g, '').replace(/["']$/g, '') : 'VibeDraft command';
 
   // Remove frontmatter and extract main content
   let content = mdContent.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, '');
@@ -141,7 +141,7 @@ async function createReleasePackage(agent, scriptType, version) {
     // Copy scripts
     const scriptsSource = path.join(REPO_ROOT, 'scripts');
     const scriptsDest = path.join(vibedraftDir, 'scripts');
-    await fs.copy(scriptsSource, scriptsDest, { 
+    await fs.copy(scriptsSource, scriptsDest, {
       overwrite: true,
       filter: (src) => {
         // Exclude node-specific scripts from packages
@@ -193,24 +193,12 @@ async function createReleasePackage(agent, scriptType, version) {
     const zipPath = path.join(RELEASE_DIR, zipFilename);
 
     const zip = new AdmZip();
-    
-    // Add all files from temp directory
-    const addDirectory = async (dirPath, zipPath = '') => {
-      const items = await fs.readdir(dirPath);
-      for (const item of items) {
-        const itemPath = path.join(dirPath, item);
-        const itemZipPath = zipPath ? path.join(zipPath, item) : item;
-        const stats = await fs.stat(itemPath);
-        
-        if (stats.isDirectory()) {
-          await addDirectory(itemPath, itemZipPath);
-        } else {
-          zip.addLocalFile(itemPath, zipPath);
-        }
-      }
-    };
 
-    await addDirectory(tempDir);
+    // Add all files from temp directory using addLocalFolder
+    // This properly handles the directory structure
+    zip.addLocalFolder(tempDir);
+
+    // Write the ZIP file
     zip.writeZip(zipPath);
 
     const stats = await fs.stat(zipPath);
@@ -239,7 +227,6 @@ async function main() {
   await fs.remove(RELEASE_DIR);
   await fs.ensureDir(RELEASE_DIR);
 
-  const packages = [];
   let successCount = 0;
   let errorCount = 0;
 
@@ -247,8 +234,7 @@ async function main() {
   for (const agent of ALL_AGENTS) {
     for (const scriptType of SCRIPT_TYPES) {
       try {
-        const zipPath = await createReleasePackage(agent, scriptType, version);
-        packages.push(zipPath);
+        await createReleasePackage(agent, scriptType, version);
         successCount++;
       } catch (error) {
         console.error(chalk.red(`  ✗ Error: ${error.message}`));
@@ -258,7 +244,7 @@ async function main() {
   }
 
   // Summary
-  console.log(chalk.bold.green(`\n✅ Package generation complete!\n`));
+  console.log(chalk.bold.green('\n✅ Package generation complete!\n'));
   console.log(chalk.cyan(`Success: ${successCount} packages`));
   if (errorCount > 0) {
     console.log(chalk.red(`Errors: ${errorCount} packages`));
@@ -291,4 +277,3 @@ main().catch((error) => {
   }
   process.exit(1);
 });
-
