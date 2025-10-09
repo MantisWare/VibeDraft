@@ -35,7 +35,8 @@
     "release:minor": "npm version minor -m 'Release v%s'",
     "release:major": "npm version major -m 'Release v%s'",
     "publish:npm": "npm publish",
-    "release": "npm run release:patch && npm run publish:npm"
+    "release": "npm run release:patch && npm run publish:npm",
+    "release:full": "npm run release && npm run build:releases && npm run release:github"
   },
   "keywords": [
     "cli",

@@ -9,7 +9,6 @@
 ## Recent Changes
 - **Complete Rebranding** - Changed from "Specify" to "VibeDraft" throughout entire codebase
   - Updated all CLI commands and slash commands
-  - Changed `vibedraft.specify` to `vibedraft.draft` for more vibey naming
   - Removed all "Specify" brand references from documentation
   - Maintained verb usage like "doesn't specify" where grammatically correct
 
@@ -65,7 +64,7 @@
   - Friendly error handling
   - Keep technical accuracy while being approachable
 
-- **Command Naming**: Using `/vibedraft.draft` instead of `/vibedraft.specify`
+- **Command Naming**: Using `/vibedraft.draft`
   - More casual and vibey
   - Better aligns with brand personality
   - Clearer action verb for users
