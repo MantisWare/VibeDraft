@@ -44,6 +44,7 @@ program
   .option('--no-git', 'Skip git repository initialization')
   .option('--here', 'Initialize project in the current directory instead of creating a new one', false)
   .option('--force', 'Force merge/overwrite when using --here (skip confirmation)', false)
+  .option('--local', 'Use local templates instead of downloading from GitHub (for development)', false)
   .option('--skip-tls', 'Skip SSL/TLS verification (not recommended)', false)
   .option('--debug', 'Show verbose diagnostic output for network and extraction failures', false)
   .option('--github-token <token>', 'GitHub token to use for API requests')

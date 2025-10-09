@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Release Package System** - Automated GitHub release creation
+  - `npm run build:releases` - Generate template packages for all AI agents
+  - `npm run release:github` - Create GitHub release with packages
+  - `npm run release:github:draft` - Create draft release for review
+  - Supports all 12 AI agents (claude, cursor, copilot, gemini, qwen, opencode, windsurf, q, codex, kilocode, auggie, roo)
+  - Generates both Bash (sh) and PowerShell (ps1) variants
+  - Complete documentation in `docs/creating-releases.md`
+
+- **Local Template Support** - Development and testing improvements
+  - `--local` flag for `init` command - Use local templates instead of GitHub downloads
+  - Auto-fallback to local templates when GitHub is unavailable
+  - Better error messages with actionable solutions
+
+### Changed
+- Updated `.gitignore` to exclude `.genreleases/` directory
+- Enhanced error handling for GitHub API failures
+- Improved developer experience with clearer fallback messaging
+
+### Fixed
+- Resolved GitHub release dependency for first-time users
+- Template download failures now gracefully fallback to local templates
+
 ## [1.0.0] - 2025-10-09
 
 ### 🎉 Initial Release - VibeDraft is Here!
