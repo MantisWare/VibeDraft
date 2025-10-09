@@ -1,6 +1,6 @@
 {
   "name": "vibedraft-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "VibeDraft CLI - Setup tool for VibeDraft spec-driven development projects",
   "main": "index.js",
   "type": "module",
