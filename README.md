@@ -542,6 +542,54 @@ VibeDraft uses **ESLint** for code quality and consistency:
 - Enforces best practices and error prevention
 - Custom configuration in `eslint.config.js`
 
+### Publishing & Versioning
+
+VibeDraft includes automated release scripts with version bumping:
+
+#### Quick Release (Patch)
+
+```bash
+# Bump patch version (1.0.0 → 1.0.1), test, commit, tag, and publish
+npm run release
+```
+
+#### Version Bump Types
+
+```bash
+# Patch release (bug fixes): 1.0.0 → 1.0.1
+npm run release:patch
+
+# Minor release (new features): 1.0.0 → 1.1.0
+npm run release:minor
+
+# Major release (breaking changes): 1.0.0 → 2.0.0
+npm run release:major
+```
+
+#### Manual Publishing
+
+```bash
+# Just publish (without version bump)
+npm run publish:npm
+```
+
+#### What Happens During Release
+
+1. **Pre-version checks**: Runs linting and tests
+2. **Version bump**: Increments version in `package.json`
+3. **Auto-fix**: Runs linter with autofix
+4. **Git commit**: Commits version bump with message "Release vX.X.X"
+5. **Git tag**: Creates a git tag for the version
+6. **Git push**: Pushes commits and tags to remote
+7. **Publish**: Publishes to npm registry
+
+#### Version Script Hooks
+
+- `preversion`: Runs lint and tests before versioning
+- `version`: Runs lint with autofix and stages changes
+- `postversion`: Pushes commits and tags to git
+- `prepublishOnly`: Final lint and test check before publish
+
 ---
 
 ## 🌟 Why VibeDraft?

@@ -1,6 +1,6 @@
 {
   "name": "vibedraft-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "VibeDraft CLI - Setup tool for VibeDraft spec-driven development projects",
   "main": "index.js",
   "type": "module",
@@ -16,7 +16,15 @@
     "clean": "rm -rf test-tmp node_modules/.cache",
     "prepare": "echo 'VibeDraft CLI ready for development'",
     "prepack": "npm run clean",
-    "prepublishOnly": "npm run lint:check && npm test"
+    "prepublishOnly": "npm run lint:check && npm test",
+    "preversion": "npm run lint:check && npm test",
+    "version": "npm run lint && git add -A",
+    "postversion": "git push && git push --tags",
+    "release:patch": "npm version patch -m 'Release v%s'",
+    "release:minor": "npm version minor -m 'Release v%s'",
+    "release:major": "npm version major -m 'Release v%s'",
+    "publish:npm": "npm publish",
+    "release": "npm run release:patch && npm run publish:npm"
   },
   "keywords": [
     "cli",
