@@ -7,6 +7,14 @@
   "bin": {
     "vibedraft": "./index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MantisWare/VibeDraft.git"
+  },
+  "homepage": "https://github.com/MantisWare/VibeDraft#readme",
+  "bugs": {
+    "url": "https://github.com/MantisWare/VibeDraft/issues"
+  },
   "scripts": {
     "test": "node --test test/cli.test.js",
     "test:verbose": "node --test --test-reporter=spec test/cli.test.js",

@@ -504,14 +504,14 @@ Checklists, analysis, and clarification steps ensure you build the right thing, 
 ## 🎓 Learn More
 
 ### Documentation
-- **[Quick Start Guide](./docs/quickstart.md)** - Get up and running fast
-- **[Installation Guide](./docs/installation.md)** - Detailed setup instructions
-- **[Spec-Driven Development](./spec-driven.md)** - Deep dive into the methodology
-- **[Agent Support Guide](./AGENTS.md)** - Adding new AI agents
-- **[Local Development](./docs/local-development.md)** - Contributing to VibeDraft
+- **[Quick Start Guide](https://github.com/MantisWare/VibeDraft/blob/master/docs/quickstart.md)** - Get up and running fast
+- **[Installation Guide](https://github.com/MantisWare/VibeDraft/blob/master/docs/installation.md)** - Detailed setup instructions
+- **[Spec-Driven Development](https://github.com/MantisWare/VibeDraft/blob/master/spec-driven.md)** - Deep dive into the methodology
+- **[Agent Support Guide](https://github.com/MantisWare/VibeDraft/blob/master/AGENTS.md)** - Adding new AI agents
+- **[Local Development](https://github.com/MantisWare/VibeDraft/blob/master/docs/local-development.md)** - Contributing to VibeDraft
 
 ### Examples
-Check out the [templates/](./templates/) directory for example specs, plans, and task lists!
+Check out the [templates/](https://github.com/MantisWare/VibeDraft/tree/master/templates) directory for example specs, plans, and task lists!
 
 ---
 
@@ -566,7 +566,7 @@ The test suite includes **46 test cases** covering:
 - ✅ Edge cases and error scenarios
 - ✅ Integration tests
 
-See [`test/README.md`](./test/README.md) for detailed test documentation.
+See [`test/README.md`](https://github.com/MantisWare/VibeDraft/blob/master/test/README.md) for detailed test documentation.
 
 ### Test Results
 
@@ -616,7 +616,7 @@ To work on VibeDraft locally:
 5. Test your changes: `npm test`
 6. Run the CLI: `vibedraft --help`
 
-See [docs/local-development.md](./docs/local-development.md) for detailed development instructions.
+See [docs/local-development.md](https://github.com/MantisWare/VibeDraft/blob/master/docs/local-development.md) for detailed development instructions.
 
 ### Code Quality
 
@@ -734,13 +734,13 @@ Check out our contributing guidelines for more details.
 
 - **Issues**: Found a bug? [Open an issue](https://github.com/MantisWare/VibeDraft/issues)
 - **Discussions**: Questions? [Start a discussion](https://github.com/MantisWare/VibeDraft/discussions)
-- **Docs**: Check the [docs folder](./docs/)
+- **Docs**: Check the [docs folder](https://github.com/MantisWare/VibeDraft/tree/master/docs)
 
 ---
 
 ## 📜 License
 
-MIT License - See [LICENSE](./LICENSE) for details
+MIT License - See [LICENSE](https://github.com/MantisWare/VibeDraft/blob/master/LICENSE) for details
 
 ---
 
