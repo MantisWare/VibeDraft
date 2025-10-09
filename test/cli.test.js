@@ -445,15 +445,16 @@ describe('VibeDraft CLI Tests', () => {
       const commandsPath = path.join(testTmpDir, projectName, '.vibedraft', 'templates', 'commands');
       assert.strictEqual(fs.existsSync(commandsPath), true);
 
-      // Check for command files
+      // Check for command files (with vibedraft. prefix)
       const commands = [
-        'specify.md',
-        'plan.md',
-        'tasks.md',
-        'implement.md',
-        'analyze.md',
-        'clarify.md',
-        'checklist.md'
+        'vibedraft.constitution.md',
+        'vibedraft.draft.md',
+        'vibedraft.plan.md',
+        'vibedraft.tasks.md',
+        'vibedraft.implement.md',
+        'vibedraft.analyze.md',
+        'vibedraft.clarify.md',
+        'vibedraft.checklist.md'
       ];
 
       commands.forEach(command => {
@@ -491,8 +492,8 @@ describe('VibeDraft CLI Tests', () => {
       assert.strictEqual(fs.existsSync(specsPath), true);
     });
 
-    it('should create README.md', () => {
-      const readmePath = path.join(testTmpDir, projectName, 'README.md');
+    it('should create VIBEDRAFT_README.md', () => {
+      const readmePath = path.join(testTmpDir, projectName, 'VIBEDRAFT_README.md');
       assert.strictEqual(fs.existsSync(readmePath), true);
 
       const content = fs.readFileSync(readmePath, 'utf8');
