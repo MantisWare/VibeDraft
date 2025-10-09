@@ -11,12 +11,12 @@ This guide will help you get started with Spec-Driven Development using Spec Kit
 Initialize your project depending on the coding agent you're using:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <PROJECT_NAME>
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <PROJECT_NAME>
 ```
 
 Example with AI agent selection:
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <PROJECT_NAME> --ai claude
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <PROJECT_NAME> --ai claude
 ```
 
 ### 2. Create the Spec

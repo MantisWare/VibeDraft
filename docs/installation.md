@@ -15,15 +15,15 @@
 The easiest way to get started is to initialize a new project:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <PROJECT_NAME>
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <PROJECT_NAME>
 ```
 
 Or initialize in the current directory:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init .
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init .
 # or use the --here flag
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init --here
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init --here
 ```
 
 ### Choose Your AI Agent
@@ -31,9 +31,9 @@ uvx --from git+https://github.com/github/spec-kit.git vibedraft init --here
 You can choose your AI agent during initialization:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <project_name> --ai claude
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <project_name> --ai gemini
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <project_name> --ai copilot
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <project_name> --ai claude
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <project_name> --ai gemini
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <project_name> --ai copilot
 ```
 
 ### Script Compatibility
@@ -45,7 +45,7 @@ All automation scripts are available in both Node.js (`.js`) and Bash (`.sh`) fo
 If you prefer to get the templates without checking for the right tools:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git vibedraft init <project_name> --ai claude --ignore-agent-tools
+uvx --from git+https://github.com/MantisWare/VibeDraft.git vibedraft init <project_name> --ai claude --ignore-agent-tools
 ```
 
 ## Verification

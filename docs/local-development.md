@@ -7,8 +7,8 @@ This guide shows how to iterate on the `vibedraft` CLI locally without publishin
 ## 1. Clone and Switch Branches
 
 ```bash
-git clone https://github.com/github/spec-kit.git
-cd spec-kit
+git clone https://github.com/MantisWare/VibeDraft.git
+cd VibeDraft
 # Work on a feature branch
 git checkout -b your-feature-branch
 ```
@@ -60,7 +60,7 @@ You can also point uvx at a specific branch without merging:
 ```bash
 # Push your working branch first
 git push origin your-feature-branch
-uvx --from git+https://github.com/github/spec-kit.git@your-feature-branch vibedraft init demo-branch-test --script ps
+uvx --from git+https://github.com/MantisWare/VibeDraft.git@your-feature-branch vibedraft init demo-branch-test --script ps
 ```
 
 ### 4a. Absolute Path uvx (Run From Anywhere)
@@ -68,19 +68,19 @@ uvx --from git+https://github.com/github/spec-kit.git@your-feature-branch vibedr
 If you're in another directory, use an absolute path instead of `.`:
 
 ```bash
-uvx --from /mnt/c/GitHub/spec-kit vibedraft --help
-uvx --from /mnt/c/GitHub/spec-kit vibedraft init demo-anywhere --ai copilot --ignore-agent-tools --script sh
+uvx --from /mnt/c/MantisWare/VibeDraft vibedraft --help
+uvx --from /mnt/c/MantisWare/VibeDraft vibedraft init demo-anywhere --ai copilot --ignore-agent-tools --script sh
 ```
 
 Set an environment variable for convenience:
 ```bash
-export SPEC_KIT_SRC=/mnt/c/GitHub/spec-kit
+export SPEC_KIT_SRC=/mnt/c/MantisWare/VibeDraft
 uvx --from "$SPEC_KIT_SRC" vibedraft init demo-env --ai copilot --ignore-agent-tools --script ps
 ```
 
 (Optional) Define a shell function:
 ```bash
-vibedraft-dev() { uvx --from /mnt/c/GitHub/spec-kit vibedraft "$@"; }
+vibedraft-dev() { uvx --from /mnt/c/MantisWare/VibeDraft vibedraft "$@"; }
 # Then
 vibedraft-dev --help
 ```
@@ -139,7 +139,7 @@ vibedraft init demo --skip-tls --ai gemini --ignore-agent-tools --script ps
 | Run CLI directly | `python -m src.vibedraft_cli --help` |
 | Editable install | `uv pip install -e .` then `vibedraft ...` |
 | Local uvx run (repo root) | `uvx --from . vibedraft ...` |
-| Local uvx run (abs path) | `uvx --from /mnt/c/GitHub/spec-kit vibedraft ...` |
+| Local uvx run (abs path) | `uvx --from /mnt/c/MantisWare/VibeDraft vibedraft ...` |
 | Git branch uvx | `uvx --from git+URL@branch vibedraft ...` |
 | Build wheel | `uv build` |
 

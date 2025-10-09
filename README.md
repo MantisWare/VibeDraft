@@ -10,7 +10,7 @@
 
 <p align="center">
     <a href="https://github.com/MantisWare/VibeDraft/stargazers"><img src="https://img.shields.io/github/stars/MantisWare/VibeDraft?style=social" alt="GitHub stars"/></a>
-    <a href="./LICENSE"><img src="https://img.shields.io/github/license/github/spec-kit" alt="License"/></a>
+    <a href="./LICENSE"><img src="https://img.shields.io/github/license/MantisWare/VibeDraft" alt="License"/></a>
 </p>
 
 ---
@@ -639,8 +639,8 @@ Check out our contributing guidelines for more details.
 
 ## 🎤 Support
 
-- **Issues**: Found a bug? [Open an issue](https://github.com/github/spec-kit/issues)
-- **Discussions**: Questions? [Start a discussion](https://github.com/github/spec-kit/discussions)
+- **Issues**: Found a bug? [Open an issue](https://github.com/MantisWare/VibeDraft/issues)
+- **Discussions**: Questions? [Start a discussion](https://github.com/MantisWare/VibeDraft/discussions)
 - **Docs**: Check the [docs folder](./docs/)
 
 ---

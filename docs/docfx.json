@@ -56,13 +56,13 @@
     "cleanupCacheHistory": false,
     "disableGitFeatures": false,
     "globalMetadata": {
-      "_appTitle": "Spec Kit Documentation",
-      "_appName": "Spec Kit",
-      "_appFooter": "Spec Kit - A specification-driven development toolkit",
+      "_appTitle": "VibeDraft Documentation",
+      "_appName": "VibeDraft",
+      "_appFooter": "VibeDraft - Where specs meet vibes, and code flows like magic",
       "_enableSearch": true,
       "_disableContribution": false,
       "_gitContribute": {
-        "repo": "https://github.com/github/spec-kit",
+        "repo": "https://github.com/MantisWare/VibeDraft",
         "branch": "main"
       }
     }

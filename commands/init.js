@@ -175,7 +175,8 @@ export async function initCommand(projectName, options) {
       tracker,
       debug: options.debug,
       githubToken: options.githubToken,
-      skipTls: options.skipTls
+      skipTls: options.skipTls,
+      useLocalTemplate: options.localTemplate ?? false
     });
 
     // Ensure scripts are executable
