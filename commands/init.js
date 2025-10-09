@@ -92,7 +92,13 @@ export async function initCommand(projectName, options) {
       process.exit(1);
     }
   } else {
-    selectedAi = await selectWithArrows(AI_CHOICES, 'Choose your AI assistant:', 'copilot');
+    // In CI/test mode, use default without prompting
+    const isTestEnvironment = process.env.CI === 'true' || process.env.NODE_ENV === 'test';
+    if (isTestEnvironment) {
+      selectedAi = 'copilot';
+    } else {
+      selectedAi = await selectWithArrows(AI_CHOICES, 'Choose your AI assistant:', 'copilot');
+    }
   }
 
   // Check agent tools unless ignored
@@ -201,19 +207,21 @@ export async function initCommand(projectName, options) {
 
     tracker.complete('final', 'project ready');
   } catch (e) {
-    tracker.error('final', e.message);
+    tracker.error('final', e.message ?? 'Unknown error');
     clearInterval(updateInterval);
 
     if (process.stdout.isTTY) {
       process.stdout.write('\x1b[2J\x1b[0f');
     }
     console.log(tracker.render());
-    console.log(createPanel(`Initialization failed: ${e.message}`, 'Failure', 'red'));
+
+    const errorMessage = e.message ?? e.toString() ?? 'Unknown error occurred';
+    console.error(createPanel(`Initialization failed: ${errorMessage}`, 'Failure', 'red'));
 
     if (options.debug) {
-      console.log(
+      console.error(
         createPanel(
-          `Node: ${process.version}\nPlatform: ${process.platform}\nCWD: ${process.cwd()}`,
+          `Node: ${process.version}\nPlatform: ${process.platform}\nCWD: ${process.cwd()}\nError: ${e.stack ?? e}`,
           'Debug Environment',
           'cyan'
         )
@@ -221,7 +229,11 @@ export async function initCommand(projectName, options) {
     }
 
     if (!options.here && (await fs.pathExists(projectPath))) {
-      await fs.remove(projectPath);
+      try {
+        await fs.remove(projectPath);
+      } catch (cleanupError) {
+        console.error(`Failed to cleanup project directory: ${cleanupError.message}`);
+      }
     }
 
     process.exit(1);
