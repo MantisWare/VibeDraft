@@ -23,6 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Auto-fallback to local templates when GitHub is unavailable
   - Better error messages with actionable solutions
 
+- **Agent Settings Files** - IDE configuration support
+  - Cursor projects now include `.cursor/settings.json` for command recommendations
+  - GitHub Copilot projects include `.vscode/settings.json`
+  - Enables automatic command discovery in IDEs
+
 ### Changed
 - Updated `.gitignore` to exclude `.genreleases/` directory
 - Enhanced error handling for GitHub API failures

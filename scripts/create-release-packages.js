@@ -188,6 +188,24 @@ async function createReleasePackage(agent, scriptType, version) {
     const commandCount = await generateAgentCommands(tempDir, agent, scriptType);
     console.log(chalk.green(`  ✓ Generated ${commandCount} command files`));
 
+    // Copy agent-specific settings files
+    const agentSettingsMap = {
+      cursor: { source: 'cursor-settings.json', dest: '.cursor/settings.json' },
+      copilot: { source: 'vscode-settings.json', dest: '.vscode/settings.json' }
+    };
+
+    if (agentSettingsMap[agent]) {
+      const { source, dest } = agentSettingsMap[agent];
+      const sourceFile = path.join(REPO_ROOT, 'templates', source);
+      const destFile = path.join(tempDir, dest);
+
+      if (await fs.pathExists(sourceFile)) {
+        await fs.ensureDir(path.dirname(destFile));
+        await fs.copy(sourceFile, destFile);
+        console.log(chalk.green(`  ✓ Added ${source} → ${dest}`));
+      }
+    }
+
     // Create ZIP archive
     const zipFilename = `vibedraft-template-${agent}-${scriptType}-${version}.zip`;
     const zipPath = path.join(RELEASE_DIR, zipFilename);
