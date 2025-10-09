@@ -29,9 +29,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enables automatic command discovery in IDEs
 
 ### Changed
+- **Command File Naming** - All command files now use `vibedraft.` prefix
+  - Example: `vibedraft.constitution.md`, `vibedraft.draft.md`, etc.
+  - Improves clarity and avoids naming conflicts
+  - Better namespacing for IDE command discovery
+- **README Preservation** - VibeDraft README now copied as `VIBEDRAFT_README.md`
+  - Existing project `README.md` files are never overwritten
+  - `.gitignore` only copied if it doesn't exist in target directory
+  - Respects your project's documentation
 - Updated `.gitignore` to exclude `.genreleases/` directory
 - Enhanced error handling for GitHub API failures
 - Improved developer experience with clearer fallback messaging
+- Updated Cursor settings to include all 8 commands (added analyze and checklist)
 
 ### Fixed
 - Resolved GitHub release dependency for first-time users

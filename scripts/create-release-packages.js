@@ -88,14 +88,14 @@ async function generateAgentCommands(targetDir, agent, scriptType) {
 
   // Script mapping
   const scriptMap = {
-    'constitution.md': 'constitution',
-    'specify.md': 'create-new-feature',
-    'clarify.md': 'clarify',
-    'plan.md': 'setup-plan',
-    'analyze.md': 'analyze',
-    'tasks.md': 'tasks',
-    'checklist.md': 'checklist',
-    'implement.md': 'implement'
+    'vibedraft.constitution.md': 'constitution',
+    'vibedraft.draft.md': 'create-new-feature',
+    'vibedraft.clarify.md': 'clarify',
+    'vibedraft.plan.md': 'setup-plan',
+    'vibedraft.analyze.md': 'analyze',
+    'vibedraft.tasks.md': 'tasks',
+    'vibedraft.checklist.md': 'checklist',
+    'vibedraft.implement.md': 'implement'
   };
 
   const templateFiles = await fs.readdir(templatesDir);
@@ -173,12 +173,22 @@ async function createReleasePackage(agent, scriptType, version) {
     await fs.copy(memorySource, memoryDest, { overwrite: true });
 
     // Copy root files
-    const rootFiles = ['README.md', '.gitignore', 'spec-driven.md'];
-    for (const file of rootFiles) {
-      const sourceFile = path.join(REPO_ROOT, file);
-      if (await fs.pathExists(sourceFile)) {
-        await fs.copy(sourceFile, path.join(tempDir, file), { overwrite: true });
-      }
+    // README.md -> VIBEDRAFT_README.md (preserve user's existing README)
+    const readmeSource = path.join(REPO_ROOT, 'README.md');
+    if (await fs.pathExists(readmeSource)) {
+      await fs.copy(readmeSource, path.join(tempDir, 'VIBEDRAFT_README.md'), { overwrite: true });
+    }
+
+    // .gitignore - include as template
+    const gitignoreSource = path.join(REPO_ROOT, '.gitignore');
+    if (await fs.pathExists(gitignoreSource)) {
+      await fs.copy(gitignoreSource, path.join(tempDir, '.gitignore'), { overwrite: true });
+    }
+
+    // spec-driven.md - include as documentation
+    const specDrivenSource = path.join(REPO_ROOT, 'spec-driven.md');
+    if (await fs.pathExists(specDrivenSource)) {
+      await fs.copy(specDrivenSource, path.join(tempDir, 'spec-driven.md'), { overwrite: true });
     }
 
     // Create specs directory

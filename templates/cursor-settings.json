@@ -4,7 +4,9 @@
         "vibedraft.draft": true,
         "vibedraft.clarify": true,
         "vibedraft.plan": true,
+        "vibedraft.analyze": true,
         "vibedraft.tasks": true,
+        "vibedraft.checklist": true,
         "vibedraft.implement": true
     },
     "chat.tools.terminal.autoApprove": {

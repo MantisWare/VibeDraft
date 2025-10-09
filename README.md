@@ -66,13 +66,22 @@ Once installed, your AI coding assistant gets these powerful slash commands:
 # 2. Dream up your feature 💭
 /vibedraft.draft "Build a chat app with real-time messaging"
 
-# 3. Plan the tech stack 🗺️
+# 3. (Optional) Clarify ambiguities 🤔
+/vibedraft.clarify
+
+# 4. Plan the tech stack 🗺️
 /vibedraft.plan "Use WebSocket, React, and PostgreSQL"
 
-# 4. Break it into tasks 📋
+# 5. (Optional) Validate quality ✅
+/vibedraft.checklist
+
+# 6. Break it into tasks 📋
 /vibedraft.tasks
 
-# 5. Make it happen! 🚀
+# 7. (Optional) Check consistency 🔍
+/vibedraft.analyze
+
+# 8. Make it happen! 🚀
 /vibedraft.implement
 ```
 
@@ -135,17 +144,13 @@ Pre-built templates for:
 |---------|---------|-------------|
 | `/vibedraft.constitution` | 📜 Set project principles | First thing - establish your project's DNA |
 | `/vibedraft.draft` | 💭 Create feature spec | When you have a new feature idea |
+| `/vibedraft.clarify` | 🤔 Ask clarifying questions | Before planning - nail down fuzzy details |
 | `/vibedraft.plan` | 🗺️ Generate tech plan | After drafting - decide how to build it |
+| `/vibedraft.checklist` | ✅ Generate quality checks | Anytime - validate requirements quality |
 | `/vibedraft.tasks` | 📋 Break into tasks | After planning - get actionable steps |
+| `/vibedraft.analyze` | 🔍 Check consistency | After tasks - verify everything aligns |
 | `/vibedraft.implement` | 🚀 Execute tasks | Ready to code - let's build! |
 
-#### Quality Boosters ✨
-
-| Command | Purpose | When to Use |
-|---------|---------|-------------|
-| `/vibedraft.clarify` | 🤔 Ask clarifying questions | Before planning - nail down fuzzy details |
-| `/vibedraft.analyze` | 🔍 Check consistency | After tasks - verify everything aligns |
-| `/vibedraft.checklist` | ✅ Generate quality checks | Anytime - validate requirements quality |
 
 ---
 
