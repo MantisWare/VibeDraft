@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./media/vibeDraft.png" width="200"/>
+    <img src=".github/vibeDraft.png" width="200"/>
     <h1>✨ VibeDraft ✨</h1>
     <h3><em>Where specs meet vibes, and code flows like magic</em></h3>
 </div>
