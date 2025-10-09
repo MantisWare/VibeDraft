@@ -338,4 +338,10 @@ export async function initCommand(projectName, options) {
   ];
 
   console.log(createPanel(enhancementLines.join('\n'), 'Enhancement Commands', 'cyan'));
+
+  // Context-aware drafting tip
+  console.log(chalk.cyan('\n💡 Pro Tip:'));
+  console.log(chalk.white('   VibeDraft automatically scans ALL markdown files in your project'));
+  console.log(chalk.white('   for context when drafting features. Document your architecture,'));
+  console.log(chalk.white('   patterns, and decisions - the AI will read and apply them! 🎸'));
 }

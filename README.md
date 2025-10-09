@@ -1,5 +1,5 @@
 <div align="center">
-    <img src=".github/vibeDraft.png" width="200"/>
+    <img src="https://raw.githubusercontent.com/MantisWare/VibeDraft/master/.github/vibeDraft.png" width="300"/>
     <h1>✨ VibeDraft ✨</h1>
     <h3><em>Where specs meet vibes, and code flows like magic</em></h3>
 </div>
@@ -146,6 +146,84 @@ Pre-built templates for:
 | `/vibedraft.clarify` | 🤔 Ask clarifying questions | Before planning - nail down fuzzy details |
 | `/vibedraft.analyze` | 🔍 Check consistency | After tasks - verify everything aligns |
 | `/vibedraft.checklist` | ✅ Generate quality checks | Anytime - validate requirements quality |
+
+---
+
+## 🧠 Context-Aware Drafting
+
+VibeDraft is **seriously smart** about your project! When you run `/vibedraft.draft`, the AI automatically scans your **entire project structure** for documentation to understand your project better.
+
+### What Gets Scanned 🔍
+
+- ✅ **Root-level docs**: `README.md`, `ARCHITECTURE.md`, `CONTRIBUTING.md`, `DESIGN.md`
+- ✅ **Feature specs**: All specifications in `specs/` directory
+- ✅ **Documentation folders**: `docs/`, `.github/`, `guides/`, etc.
+- ✅ **Nested markdown**: ANY `.md` file anywhere in your project
+- ❌ **Excluded**: `node_modules/`, `.git/`, `build/`, `dist/`, coverage directories
+
+### How It Works 🎯
+
+1. **Scan**: Finds all markdown files in your project
+2. **Prioritize**: Reads critical docs first (README, ARCHITECTURE)
+3. **Contextualize**: Uses this knowledge to draft your feature
+4. **Align**: Creates specs that fit your project's patterns and goals
+
+### Best Practices 📚
+
+**Organize Your Documentation**:
+```
+project/
+├── README.md              # 🌟 Project overview - always read
+├── ARCHITECTURE.md        # 🏗️ System design - always read  
+├── CONTRIBUTING.md        # 📝 Dev practices - always read
+├── DESIGN.md              # 🎨 UI/UX patterns - always read
+├── docs/
+│   ├── api-guidelines.md  # 📡 API conventions
+│   ├── database.md        # 💾 Data model
+│   └── security.md        # 🔒 Security practices
+├── specs/
+│   ├── auth-system.md     # 🔐 Existing features
+│   └── user-profile.md    # 👤 Related features
+└── .github/
+    └── workflows.md       # ⚙️ CI/CD info
+```
+
+**Document Everything**:
+- Project vision and goals
+- Architectural decisions
+- Existing features and patterns
+- Technical constraints
+- Domain terminology
+- Integration points
+
+### Example in Action 🚀
+
+```bash
+# You have these docs:
+# - README.md (mentions React + TypeScript)
+# - ARCHITECTURE.md (describes microservices)  
+# - specs/user-auth.md (existing auth system)
+# - docs/api-guidelines.md (REST conventions)
+
+/vibedraft.draft "Add user notifications"
+
+# AI automatically:
+# ✓ Reads your README - understands it's a React/TS project
+# ✓ Reviews ARCHITECTURE - knows to use microservices pattern
+# ✓ Checks user-auth spec - reuses existing auth patterns
+# ✓ Applies API guidelines - follows your REST conventions
+# ✓ Creates a spec that perfectly fits your project! 🎸
+```
+
+### The More You Document, The Smarter It Gets! 💡
+
+VibeDraft learns from your project's documentation. Well-documented projects get:
+- 🎯 More accurate specifications
+- 🔄 Better alignment with existing features  
+- ⚡ Faster drafting (less clarification needed)
+- 🤝 Consistent patterns and terminology
+
+**Pro Tip**: Keep a `docs/` folder with architecture decisions, guidelines, and patterns. VibeDraft will use it all! 🎸
 
 ---
 

@@ -78,9 +78,83 @@ EOF
 fi
 
 echo -e "${GREEN}✓${NC} Created feature spec: ${SPEC_FILE}"
-echo ""
-echo "Next steps:"
-echo "  1. Edit the spec file: ${SPEC_FILE}"
-echo "  2. Run /vibedraft.plan to create implementation plan"
-echo "  3. Run /vibedraft.tasks to generate actionable tasks"
 
+# Discover ALL markdown files in project (excluding common non-doc directories)
+echo -e "${CYAN}🔍 Discovering project documentation...${NC}" >&2
+
+PRIORITY_FILES=()
+SPEC_FILES=()
+OTHER_FILES=()
+
+# Priority files in root
+for file in README.md ARCHITECTURE.md CONTRIBUTING.md DESIGN.md DESIGN_SYSTEM.md; do
+    if [ -f "$file" ]; then
+        PRIORITY_FILES+=("$(pwd)/$file")
+    fi
+done
+
+# Find all other markdown files recursively, excluding common build/dependency dirs
+while IFS= read -r -d '' file; do
+    # Get relative path
+    rel_path="${file#./}"
+    
+    # Skip the spec file we just created
+    [ "$rel_path" = "$SPEC_FILE" ] && continue
+    
+    # Categorize the file
+    if [[ "$rel_path" == specs/* ]]; then
+        SPEC_FILES+=("$(pwd)/$rel_path")
+    else
+        OTHER_FILES+=("$(pwd)/$rel_path")
+    fi
+done < <(find . -type f -name "*.md" \
+    -not -path "*/node_modules/*" \
+    -not -path "*/.git/*" \
+    -not -path "*/build/*" \
+    -not -path "*/dist/*" \
+    -not -path "*/coverage/*" \
+    -not -path "*/.next/*" \
+    -not -path "*/.nuxt/*" \
+    -not -path "*/vendor/*" \
+    -not -path "*/__pycache__/*" \
+    -not -path "*/.venv/*" \
+    -not -path "*/venv/*" \
+    -print0 2>/dev/null)
+
+# Combine all context files in priority order
+ALL_CONTEXT_FILES=("${PRIORITY_FILES[@]}" "${SPEC_FILES[@]}" "${OTHER_FILES[@]}")
+FILE_COUNT=${#ALL_CONTEXT_FILES[@]}
+
+if [ $FILE_COUNT -gt 0 ]; then
+    echo -e "${GREEN}✓${NC} Found ${FILE_COUNT} documentation file(s)" >&2
+else
+    echo -e "${CYAN}ℹ${NC} No additional documentation found (that's okay!)" >&2
+fi
+
+# Output JSON with categorized context files
+echo "{"
+echo "  \"branch_name\": \"feature-${FEATURE_SLUG}\","
+echo "  \"spec_file\": \"$(pwd)/$SPEC_FILE\","
+echo "  \"feature_dir\": \"$(pwd)/specs\","
+echo "  \"context_files\": {"
+echo "    \"priority\": ["
+for i in "${!PRIORITY_FILES[@]}"; do
+    echo -n "      \"${PRIORITY_FILES[$i]}\""
+    [ $i -lt $(( ${#PRIORITY_FILES[@]} - 1 )) ] && echo "," || echo ""
+done
+echo "    ],"
+echo "    \"specs\": ["
+for i in "${!SPEC_FILES[@]}"; do
+    echo -n "      \"${SPEC_FILES[$i]}\""
+    [ $i -lt $(( ${#SPEC_FILES[@]} - 1 )) ] && echo "," || echo ""
+done
+echo "    ],"
+echo "    \"other\": ["
+for i in "${!OTHER_FILES[@]}"; do
+    echo -n "      \"${OTHER_FILES[$i]}\""
+    [ $i -lt $(( ${#OTHER_FILES[@]} - 1 )) ] && echo "," || echo ""
+done
+echo "    ],"
+echo "    \"total_count\": $FILE_COUNT"
+echo "  }"
+echo "}"

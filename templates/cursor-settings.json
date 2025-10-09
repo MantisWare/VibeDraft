@@ -1,0 +1,15 @@
+{
+    "chat.promptFilesRecommendations": {
+        "vibedraft.constitution": true,
+        "vibedraft.draft": true,
+        "vibedraft.clarify": true,
+        "vibedraft.plan": true,
+        "vibedraft.tasks": true,
+        "vibedraft.implement": true
+    },
+    "chat.tools.terminal.autoApprove": {
+        ".vibedraft/scripts/bash/": true,
+        ".vibedraft/scripts/ps/": true
+    }
+}
+

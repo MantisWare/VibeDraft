@@ -18,11 +18,69 @@ The text you typed after `/vibedraft.draft` is your feature description. We've g
 
 Given that feature description, do this:
 
-1. Run the script `{SCRIPT}` from repo root and parse its JSON output for BRANCH_NAME and SPEC_FILE. All file paths must be absolute.
+1. Run the script `{SCRIPT}` from repo root and parse its JSON output for BRANCH_NAME, SPEC_FILE, and CONTEXT_FILES. All file paths must be absolute.
   **IMPORTANT** You must only ever run this script once. The JSON is provided in the terminal as output - always refer to it to get the actual content you're looking for. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
-2. Load `templates/spec-template.md` to understand required sections.
 
-3. Follow this execution flow:
+2. **🔍 Context Discovery** - Gather comprehensive project context by scanning documentation:
+
+   The script output provides categorized markdown files in `context_files`:
+   - `context_files.priority[]` - Critical root-level docs (README, ARCHITECTURE, etc.)
+   - `context_files.specs[]` - Existing feature specifications  
+   - `context_files.other[]` - All other markdown documentation
+   - `context_files.total_count` - Total files found
+
+   **Read Context Files Strategically:**
+
+   a. **Always read Priority files first** (README.md, ARCHITECTURE.md, CONTRIBUTING.md, DESIGN.md)
+      - These define the project's foundation, goals, and patterns
+      - Read ALL priority files that exist
+   
+   b. **Read relevant Spec files** (from specs/ directory)
+      - Look for related features or similar functionality
+      - Understand existing feature patterns
+      - Limit: Read up to 5 most relevant spec files
+   
+   c. **Scan Other files selectively** (docs/, guides/, etc.)
+      - Read files with relevant names based on feature type
+      - Examples:
+        * Authentication feature? Read files with "auth", "security", "user" in path
+        * UI feature? Read files with "design", "component", "style" in path
+        * API feature? Read files with "api", "endpoint", "integration" in path
+      - Limit: Read up to 5-10 other files maximum
+
+   **Total Reading Limit**: Aim for 15-20 files max to maintain performance. Prioritize quality over quantity.
+
+   **Extract Key Information:**
+   - **Project Goals**: What is this project trying to achieve?
+   - **Existing Features**: What's already built?
+   - **Patterns & Conventions**: How are similar features implemented?
+   - **Constraints**: Technical, business, or design limitations
+   - **Terminology**: Domain-specific language and concepts
+   - **Architecture**: System design and component relationships
+
+   **Use Context in Specification:**
+   - Align new feature with existing patterns
+   - Use consistent terminology
+   - Respect established constraints
+   - Reference related features
+   - Make informed assumptions based on project standards
+
+   **Document Context Sources:**
+   In the spec's "Assumptions" section, add a "References & Context" subsection noting which files informed your understanding:
+   
+   ```markdown
+   ### References & Context
+   
+   This specification was informed by:
+   - `README.md` - Project uses microservices architecture
+   - `ARCHITECTURE.md` - Event-driven communication pattern
+   - `specs/auth-system.md` - Existing authentication system
+   - `docs/api-guidelines.md` - RESTful API conventions
+   ```
+
+3. Load `templates/spec-template.md` to understand required sections.
+
+4. Follow this execution flow:
 
     1. Parse user description from Input
        If empty: ERROR "No feature description provided"
@@ -48,9 +106,9 @@ Given that feature description, do this:
     7. Identify Key Entities (if data involved)
     8. Return: SUCCESS (spec ready for planning)
 
-4. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) while preserving section order and headings.
+5. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) and gathered context while preserving section order and headings.
 
-5. **Specification Quality Validation**: After writing the initial spec, validate it against quality criteria:
+6. **Specification Quality Validation**: After writing the initial spec, validate it against quality criteria:
 
    a. **Create Spec Quality Checklist**: Generate a checklist file at `FEATURE_DIR/checklists/requirements.md` using the checklist template structure with these validation items:
    
@@ -142,7 +200,7 @@ Given that feature description, do this:
    
    d. **Update Checklist**: After each validation iteration, update the checklist file with current pass/fail status
 
-6. Report completion with branch name, spec file path, checklist results, and readiness for the next phase (`/vibedraft.clarify` or `/vibedraft.plan`).
+7. Report completion with branch name, spec file path, number of context files used, checklist results, and readiness for the next phase (`/vibedraft.clarify` or `/vibedraft.plan`).
 
 **NOTE:** The script creates and checks out the new branch and initializes the spec file before writing.
 
