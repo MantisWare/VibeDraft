@@ -1,0 +1,51 @@
+{
+  "name": "vibedraft-cli",
+  "version": "1.0.0",
+  "description": "VibeDraft CLI - Setup tool for VibeDraft spec-driven development projects",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "vibedraft": "./index.js"
+  },
+  "scripts": {
+    "test": "node --test test/cli.test.js",
+    "test:verbose": "node --test --test-reporter=spec test/cli.test.js",
+    "test:coverage": "node --test --experimental-test-coverage test/cli.test.js",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "clean": "rm -rf test-tmp node_modules/.cache",
+    "prepare": "echo 'VibeDraft CLI ready for development'",
+    "prepack": "npm run clean",
+    "prepublishOnly": "npm run lint:check && npm test"
+  },
+  "keywords": [
+    "cli",
+    "spec-driven",
+    "development",
+    "ai-assistant"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "cli-progress": "^3.12.0",
+    "cli-table3": "^0.6.3",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.12",
+    "node-fetch": "^3.3.2",
+    "ora": "^7.0.1",
+    "simple-git": "^3.21.0",
+    "strip-ansi": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0"
+  }
+}
