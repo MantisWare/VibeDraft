@@ -47,6 +47,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Template download failures now gracefully fallback to local templates
 - Fixed ZIP file creation using proper `addLocalFolder()` method for correct archive format
 - Fixed script permission handling to properly use file handle API and set correct executable permissions
+- **Critical**: Fixed file stream handling in download - now properly waits for file write to complete before extraction
+  - Resolves "Invalid or unsupported zip format" errors when downloading from GitHub releases
+  - File streams now use proper async/await pattern with 'finish' event
 
 ## [1.0.0] - 2025-10-09
 
