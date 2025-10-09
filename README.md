@@ -9,8 +9,16 @@
 </p>
 
 <p align="center">
+    <a href="https://www.npmjs.com/package/vibedraft-cli"><img src="https://img.shields.io/npm/v/vibedraft-cli" alt="npm version"/></a>
+    <a href="https://www.npmjs.com/package/vibedraft-cli"><img src="https://img.shields.io/npm/dm/vibedraft-cli" alt="npm downloads"/></a>
     <a href="https://github.com/MantisWare/VibeDraft/stargazers"><img src="https://img.shields.io/github/stars/MantisWare/VibeDraft?style=social" alt="GitHub stars"/></a>
     <a href="./LICENSE"><img src="https://img.shields.io/github/license/MantisWare/VibeDraft" alt="License"/></a>
+    <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/vibedraft-cli" alt="node version"/></a>
+</p>
+
+<p align="center">
+    <strong>📦 Install:</strong> <code>npm install -g vibedraft-cli</code><br/>
+    <strong>🚀 Start:</strong> <code>vibedraft init my-project</code>
 </p>
 
 ---
@@ -33,7 +41,7 @@ Your **specifications become executable** - they don't just guide development, t
 
 **Option 1: Global Install (Recommended)**
 ```bash
-npm install -g .
+npm install -g vibedraft-cli
 ```
 
 Then vibe anywhere:
@@ -44,7 +52,7 @@ vibedraft check
 
 **Option 2: Quick Vibe (One-Time)**
 ```bash
-npx . init my-awesome-project
+npx vibedraft-cli init my-awesome-project
 ```
 
 ### The VibeDraft Workflow
@@ -149,20 +157,27 @@ Pre-built templates for:
 - **Git** (optional but recommended)
 - **AI coding assistant** of your choice
 
-### Global Install
+### Install from npm (Recommended)
 ```bash
-# Clone or download VibeDraft
-cd VibeDraft
+# Global install
+npm install -g vibedraft-cli
 
-# Install globally
-npm install -g .
+# Or use with npx (no install needed)
+npx vibedraft-cli init my-project
+```
 
-# Verify installation
+### Verify Installation
+```bash
+vibedraft --version
 vibedraft --help
 ```
 
-### Development Mode
+### Development Mode (Contributing)
 ```bash
+# Clone the repository
+git clone https://github.com/MantisWare/VibeDraft.git
+cd VibeDraft
+
 # Install dependencies
 npm install
 
