@@ -1,4 +1,4 @@
-# Spec Kit
+# VibeDraft
 
 *Build high-quality software faster.*
 

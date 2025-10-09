@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This guide will help you get started with Spec-Driven Development using Spec Kit.
+This guide will help you get started with Spec-Driven Development using VibeDraft.
 
 > All automation scripts are available in both Node.js (`.js`) and Bash (`.sh`) variants for cross-platform compatibility.
 

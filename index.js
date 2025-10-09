@@ -47,7 +47,6 @@ program
   .option('--skip-tls', 'Skip SSL/TLS verification (not recommended)', false)
   .option('--debug', 'Show verbose diagnostic output for network and extraction failures', false)
   .option('--github-token <token>', 'GitHub token to use for API requests')
-  .option('--local-template', 'Use local templates instead of downloading from GitHub (for testing/development)', false)
   .action(initCommand);
 
 // Check command
