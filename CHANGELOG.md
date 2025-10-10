@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated Cursor settings to include all 8 commands (added analyze and checklist)
 
 ### Fixed
+- **Version Command** - `vibedraft --version` now dynamically reads from `package.json` instead of hardcoded value
 - Resolved GitHub release dependency for first-time users
 - Template download failures now gracefully fallback to local templates
 - Fixed ZIP file creation using proper `addLocalFolder()` method for correct archive format

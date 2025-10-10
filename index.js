@@ -21,13 +21,21 @@ import { Command } from 'commander';
 import { initCommand } from './commands/init.js';
 import { checkCommand } from './commands/check.js';
 import { showBanner } from './lib/banner.js';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// Get version from package.json
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(readFileSync(join(__dirname, 'package.json'), 'utf-8'));
 
 const program = new Command();
 
 program
   .name('vibedraft')
   .description('Setup tool for VibeDraft spec-driven development projects')
-  .version('1.0.0')
+  .version(packageJson.version)
   .hook('preAction', (_thisCommand) => {
     // Show banner for all commands
     if (!process.argv.includes('--help') && !process.argv.includes('-h')) {
