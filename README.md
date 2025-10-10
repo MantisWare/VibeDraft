@@ -134,6 +134,7 @@ Pre-built templates for:
 | Command | What It Does | Example |
 |---------|-------------|---------|
 | `vibedraft init` | 🎬 Bootstrap a new project | `vibedraft init my-app --ai claude` |
+| `vibedraft init .` | 🎬 Initialize in current directory | `vibedraft init . --ai cursor` |
 | `vibedraft check` | 🔍 Check your dev environment | `vibedraft check` |
 
 ### Slash Commands (In Your AI Agent)
@@ -752,7 +753,7 @@ MIT License - See [LICENSE](https://github.com/MantisWare/VibeDraft/blob/master/
 ## 🎸 Keep the Vibes Flowing!
 
 <div align="center">
-    <p><strong>Built with 💜 by developers who believe specs shouldn't suck</strong></p>
+    <p><strong>Built with 💜 by <a href="https://waldomarais.com">Waldo Marais</a> @ <a href="https://github.com/MantisWare">MantisWare</a></strong></p>
     <p>✨ <em>Stop coding, start vibing!</em> ✨</p>
 </div>
 
@@ -763,7 +764,7 @@ MIT License - See [LICENSE](https://github.com/MantisWare/VibeDraft/blob/master/
 ```bash
 # CLI Commands
 vibedraft init <project>      # Start a new project
-vibedraft init --here         # Init in current directory
+vibedraft init .              # Init in current directory
 vibedraft check               # Check your environment
 
 # Slash Commands (In Your AI Agent)

@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `npm run release:github` - Create GitHub release with packages
   - `npm run release:github:draft` - Create draft release for review
   - Supports all 12 AI agents (claude, cursor, copilot, gemini, qwen, opencode, windsurf, q, codex, kilocode, auggie, roo)
-  - Generates both Bash (sh) and PowerShell (ps1) variants
+  - Generates Bash (sh) template packages
   - Complete documentation in `docs/creating-releases.md`
 
 - **Local Template Support** - Development and testing improvements
@@ -28,7 +28,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - GitHub Copilot projects include `.vscode/settings.json`
   - Enables automatic command discovery in IDEs
 
+- **Installation Guide** - Comprehensive HTML installation guide
+  - Beautiful single-page guide in `INSTALLATION.html`
+  - Step-by-step installation instructions
+  - Complete workflow walkthrough with all 8 commands
+  - Real-world examples and best practices
+  - Troubleshooting section
+  - Responsive design for all devices
+
 ### Changed
+- **Agent Ordering** - Reordered AI agents to prioritize Claude and Cursor
+  - Claude appears first in selection list
+  - Cursor appears second
+  - Other agents follow in logical order
+  - Release packages build in same priority order
 - **Command File Naming** - All command files now use `vibedraft.` prefix
   - Example: `vibedraft.constitution.md`, `vibedraft.draft.md`, etc.
   - Improves clarity and avoids naming conflicts
@@ -42,6 +55,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced error handling for GitHub API failures
 - Improved developer experience with clearer fallback messaging
 - Updated Cursor settings to include all 8 commands (added analyze and checklist)
+
+### Removed
+- **PowerShell Support** - Removed unused PowerShell (ps1) script variants
+  - No PowerShell scripts existed in the codebase
+  - Reduces package count from 24 to 12 (12 agents × 1 script type)
+  - Cleaner release artifacts and faster build times
+  - Only Bash scripts are supported going forward
 
 ### Fixed
 - **Version Command** - `vibedraft --version` now dynamically reads from `package.json` instead of hardcoded value

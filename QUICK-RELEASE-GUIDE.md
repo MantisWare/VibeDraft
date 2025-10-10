@@ -17,7 +17,7 @@ npm run release:github
 You now have a complete automated release system that:
 
 1. ✅ Generates template packages for **all 12 AI agents**
-2. ✅ Creates **both Bash and PowerShell** variants
+2. ✅ Creates **Bash script** variants
 3. ✅ Uploads packages to **GitHub Releases**
 4. ✅ Allows **local development** without releases
 
@@ -25,7 +25,7 @@ You now have a complete automated release system that:
 
 | Command | What It Does |
 |---------|-------------|
-| `npm run build:releases` | Generate all release packages (24 ZIP files) |
+| `npm run build:releases` | Generate all release packages (12 ZIP files) |
 | `npm run release:github` | Create GitHub release + upload packages |
 | `npm run release:github:draft` | Create draft release (for review) |
 | `vibedraft init Test --local` | Test using local templates (no GitHub needed) |
@@ -113,7 +113,7 @@ vibedraft-template-cursor-sh-0.0.7.zip
 ### 1. Release System
 - **`scripts/create-release-packages.js`** - Package generator
 - **`scripts/create-github-release.js`** - GitHub release creator
-- Generates 24 packages (12 agents × 2 script types)
+- Generates 12 packages (12 agents × 1 script type)
 - Output: `.genreleases/` (gitignored)
 
 ### 2. Local Development
@@ -164,7 +164,7 @@ VibeDraft/
 ├── .genreleases/                     ← NEW (gitignored)
 │   ├── vibedraft-template-claude-sh-0.0.7.zip
 │   ├── vibedraft-template-cursor-sh-0.0.7.zip
-│   └── ... (24 total packages)
+│   └── ... (12 total packages)
 ├── CHANGELOG.md                      ← UPDATED
 ├── package.json                      ← UPDATED (new scripts)
 ├── .gitignore                        ← UPDATED

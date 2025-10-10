@@ -19,17 +19,16 @@ npm run build:releases
 This will:
 - Read the version from `package.json` (e.g., `0.0.7`)
 - Generate ZIP files for all AI agents (claude, gemini, cursor, etc.)
-- Create both `sh` (Bash) and `ps1` (PowerShell) variants
+- Create Bash script (`sh`) variants
 - Output files to `.genreleases/` directory
 
 **Example output:**
 ```
 .genreleases/
   ├── vibedraft-template-claude-sh-0.0.7.zip
-  ├── vibedraft-template-claude-ps1-0.0.7.zip
   ├── vibedraft-template-cursor-sh-0.0.7.zip
-  ├── vibedraft-template-cursor-ps1-0.0.7.zip
-  └── ... (all other agent/script combinations)
+  ├── vibedraft-template-copilot-sh-0.0.7.zip
+  └── ... (all other agents)
 ```
 
 ### 2. Create GitHub Release
@@ -132,20 +131,20 @@ This runs: `release:patch` → `publish:npm`
 
 The build system generates packages for all supported agents:
 
-| Agent | Script Types | Directory |
-|-------|-------------|-----------|
-| claude | sh, ps1 | `.claude/commands/` |
-| cursor | sh, ps1 | `.cursor/commands/` |
-| copilot | sh, ps1 | `.github/prompts/` |
-| gemini | sh, ps1 | `.gemini/commands/` |
-| qwen | sh, ps1 | `.qwen/commands/` |
-| opencode | sh, ps1 | `.opencode/command/` |
-| windsurf | sh, ps1 | `.windsurf/workflows/` |
-| q | sh, ps1 | `.amazonq/prompts/` |
-| codex | sh, ps1 | `.codex/commands/` |
-| kilocode | sh, ps1 | `.kilocode/commands/` |
-| auggie | sh, ps1 | `.augment/commands/` |
-| roo | sh, ps1 | `.roo/commands/` |
+| Agent | Script Type | Directory |
+|-------|------------|-----------|
+| claude | sh | `.claude/commands/` |
+| cursor | sh | `.cursor/commands/` |
+| copilot | sh | `.github/prompts/` |
+| gemini | sh | `.gemini/commands/` |
+| qwen | sh | `.qwen/commands/` |
+| opencode | sh | `.opencode/command/` |
+| windsurf | sh | `.windsurf/workflows/` |
+| q | sh | `.amazonq/prompts/` |
+| codex | sh | `.codex/commands/` |
+| kilocode | sh | `.kilocode/commands/` |
+| auggie | sh | `.augment/commands/` |
+| roo | sh | `.roo/commands/` |
 
 ## Package Contents
 
@@ -155,11 +154,10 @@ Each template package contains:
 vibedraft-template-{agent}-{script}-{version}.zip
 ├── .vibedraft/
 │   ├── scripts/
-│   │   ├── bash/           # Shell scripts
-│   │   │   ├── create-new-feature.sh
-│   │   │   ├── setup-plan.sh
-│   │   │   └── ...
-│   │   └── powershell/     # PowerShell scripts (if ps1)
+│   │   └── bash/           # Shell scripts
+│   │       ├── create-new-feature.sh
+│   │       ├── setup-plan.sh
+│   │       └── ...
 │   ├── templates/
 │   │   ├── commands/       # Command templates
 │   │   ├── plan-template.md

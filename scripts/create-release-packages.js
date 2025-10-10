@@ -17,22 +17,22 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 const RELEASE_DIR = path.join(REPO_ROOT, '.genreleases');
 
-// All supported agents
-const ALL_AGENTS = ['claude', 'gemini', 'copilot', 'cursor', 'qwen', 'opencode', 'windsurf', 'q', 'codex', 'kilocode', 'auggie', 'roo'];
+// All supported agents (ordered by priority)
+const ALL_AGENTS = ['claude', 'cursor', 'copilot', 'gemini', 'windsurf', 'qwen', 'opencode', 'q', 'codex', 'kilocode', 'auggie', 'roo'];
 
 // Script types
-const SCRIPT_TYPES = ['sh', 'ps1'];
+const SCRIPT_TYPES = ['sh'];
 
-// Agent configurations
+// Agent configurations (ordered by priority)
 const AGENT_CONFIG = {
   claude: { dir: '.claude/commands', format: 'md', argPlaceholder: '$ARGUMENTS' },
   cursor: { dir: '.cursor/commands', format: 'md', argPlaceholder: '$ARGUMENTS' },
   copilot: { dir: '.github/prompts', format: 'md', argPlaceholder: '$ARGUMENTS' },
+  gemini: { dir: '.gemini/commands', format: 'toml', argPlaceholder: '{{args}}' },
   windsurf: { dir: '.windsurf/workflows', format: 'md', argPlaceholder: '$ARGUMENTS' },
+  qwen: { dir: '.qwen/commands', format: 'toml', argPlaceholder: '{{args}}' },
   opencode: { dir: '.opencode/command', format: 'md', argPlaceholder: '$ARGUMENTS' },
   q: { dir: '.amazonq/prompts', format: 'md', argPlaceholder: '$ARGUMENTS' },
-  gemini: { dir: '.gemini/commands', format: 'toml', argPlaceholder: '{{args}}' },
-  qwen: { dir: '.qwen/commands', format: 'toml', argPlaceholder: '{{args}}' },
   codex: { dir: '.codex/commands', format: 'md', argPlaceholder: '$ARGUMENTS' },
   kilocode: { dir: '.kilocode/commands', format: 'md', argPlaceholder: '$ARGUMENTS' },
   auggie: { dir: '.augment/commands', format: 'md', argPlaceholder: '$ARGUMENTS' },
@@ -106,7 +106,7 @@ async function generateAgentCommands(targetDir, agent, scriptType) {
     let content = await fs.readFile(templatePath, 'utf-8');
 
     const scriptName = scriptMap[templateFile];
-    const scriptExt = scriptType === 'sh' ? '.sh' : '.ps1';
+    const scriptExt = '.sh';
     const scriptPath = scriptName ? `${scriptBasePath}/${scriptName}${scriptExt}` : '';
 
     if (config.format === 'md') {
@@ -146,7 +146,7 @@ async function createReleasePackage(agent, scriptType, version) {
       filter: (src) => {
         // Exclude node-specific scripts from packages
         const basename = path.basename(src);
-        return !basename.endsWith('.js') || src.includes('/bash/') || src.includes('/powershell/');
+        return !basename.endsWith('.js') || src.includes('/bash/');
       }
     });
 
