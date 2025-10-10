@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Existing project `README.md` files are never overwritten
   - `.gitignore` only copied if it doesn't exist in target directory
   - Respects your project's documentation
+  - `VIBEDRAFT_README.md` automatically excluded from context scanning in slash commands
 - Updated `.gitignore` to exclude `.genreleases/` directory
 - Enhanced error handling for GitHub API failures
 - Improved developer experience with clearer fallback messaging

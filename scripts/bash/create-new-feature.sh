@@ -79,7 +79,7 @@ fi
 
 echo -e "${GREEN}✓${NC} Created feature spec: ${SPEC_FILE}"
 
-# Discover ALL markdown files in project (excluding common non-doc directories)
+# Discover ALL markdown files in project (excluding common non-doc directories and VibeDraft's own README)
 echo -e "${CYAN}🔍 Discovering project documentation...${NC}" >&2
 
 PRIORITY_FILES=()
@@ -119,6 +119,7 @@ done < <(find . -type f -name "*.md" \
     -not -path "*/__pycache__/*" \
     -not -path "*/.venv/*" \
     -not -path "*/venv/*" \
+    -not -name "VIBEDRAFT_README.md" \
     -print0 2>/dev/null)
 
 # Combine all context files in priority order
