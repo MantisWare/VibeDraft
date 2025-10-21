@@ -23,6 +23,11 @@ Follow this execution flow:
 2. Collect/derive values for placeholders:
    - If user input (conversation) supplies a value, use it.
    - Otherwise infer from existing repo context (README, docs, prior constitution versions if embedded).
+   - **Technology Stack**: If `[TECHNOLOGY_STACK_PLACEHOLDER]` exists and is unfilled:
+     * First check for `.vibedraft/memory/tech-stack-detected.json` (created during init with `--here` flag)
+     * If found, use that data to populate the Technology Stack section
+     * If not found, you can manually run detection on current project or ask user to provide details
+     * Format using the Technology Stack section template from constitution.md
    - For governance dates: `RATIFICATION_DATE` is the original adoption date (if unknown ask or mark TODO), `LAST_AMENDED_DATE` is today if changes are made, otherwise keep previous.
    - `CONSTITUTION_VERSION` must increment according to semantic versioning rules:
      * MAJOR: Backward incompatible governance/principle removals or redefinitions.
@@ -37,6 +42,10 @@ Follow this execution flow:
    - Ensure Governance section lists amendment procedure, versioning policy, and compliance review expectations.
 
 4. Consistency propagation checklist (convert prior checklist into active validations):
+   - **Technology Stack Changes**: If Technology Stack section was added or modified:
+     * Update `/templates/plan-template.md` Technical Context section to reference constitution tech stack
+     * Ensure framework-specific guidance is reflected in command templates
+     * Check if new technology constraints require updates to existing principles
    - Read `/templates/plan-template.md` and ensure any "Constitution Check" or rules align with updated principles.
    - Read `/templates/spec-template.md` for scope/requirements alignment—update if constitution adds/removes mandatory sections or constraints.
    - Read `/templates/tasks-template.md` and ensure task categorization reflects new or removed principle-driven task types (e.g., observability, versioning, testing discipline).

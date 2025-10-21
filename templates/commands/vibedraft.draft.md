@@ -35,7 +35,7 @@ Given that feature description, do this:
       - These define the project's foundation, goals, and patterns
       - Read ALL priority files that exist
    
-   b. **Read relevant Spec files** (from specs/ directory)
+   b. **Read relevant Spec files** (from `.vibedraft/specs/` or `specs/` directory)
       - Look for related features or similar functionality
       - Understand existing feature patterns
       - Limit: Read up to 5 most relevant spec files
@@ -74,7 +74,7 @@ Given that feature description, do this:
    This specification was informed by:
    - `README.md` - Project uses microservices architecture
    - `ARCHITECTURE.md` - Event-driven communication pattern
-   - `specs/auth-system.md` - Existing authentication system
+   - `.vibedraft/specs/auth-system.md` - Existing authentication system
    - `docs/api-guidelines.md` - RESTful API conventions
    ```
 

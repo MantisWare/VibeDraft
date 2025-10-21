@@ -20,6 +20,7 @@
 import { Command } from 'commander';
 import { initCommand } from './commands/init.js';
 import { checkCommand } from './commands/check.js';
+import { memoryBankCommand } from './commands/memory-bank.js';
 import { showBanner } from './lib/banner.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -48,6 +49,7 @@ program
   .command('init [project-name]')
   .description('Initialize a new VibeDraft project from the latest template')
   .option('--ai <assistant>', 'AI assistant to use: claude, gemini, copilot, cursor, qwen, opencode, codex, windsurf, kilocode, auggie, roo, or q')
+  .option('--minimal', 'Create minimal Memory Bank (recommended for small/focused projects)', false)
   .option('--ignore-agent-tools', 'Skip checks for AI agent tools like Claude Code', false)
   .option('--no-git', 'Skip git repository initialization')
   .option('--here', 'Initialize project in the current directory instead of creating a new one', false)
@@ -63,6 +65,9 @@ program
   .command('check')
   .description('Check that all required tools are installed')
   .action(checkCommand);
+
+// Memory Bank command
+program.addCommand(memoryBankCommand);
 
 // Show banner when no command provided
 if (process.argv.length === 2) {

@@ -28,11 +28,24 @@
 [PRINCIPLE_5_DESCRIPTION]
 <!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
+## Technology Stack
+<!-- This section is auto-populated during initialization if an existing project is detected.
+     If starting from scratch, fill this section after Phase 0 research in your first feature plan.
+     You can also manually run tech detection by re-initializing with VibeDraft in the project directory. -->
+
+[TECHNOLOGY_STACK_PLACEHOLDER]
+
+### Stack-Specific Principles
+<!-- Define principles specific to your technology choices -->
+
+[STACK_PRINCIPLES_PLACEHOLDER]
+<!-- Example: React Best Practices, TypeScript Guidelines, Testing Standards, API Design Principles, etc. -->
+
 ## [SECTION_2_NAME]
 <!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
 [SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+<!-- Example: Compliance standards, deployment policies, security requirements, etc. -->
 
 ## [SECTION_3_NAME]
 <!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->

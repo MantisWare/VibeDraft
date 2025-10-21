@@ -27,11 +27,19 @@ fi
 # Sanitize feature name for filename
 FEATURE_SLUG=$(echo "$FEATURE_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed 's/[^a-z0-9-]//g')
 
-# Create specs directory if it doesn't exist
-mkdir -p specs
+# Determine specs directory (prefer new location, support old for backward compatibility)
+if [ -d ".vibedraft/specs" ]; then
+    SPECS_DIR=".vibedraft/specs"
+elif [ -d "specs" ]; then
+    SPECS_DIR="specs"
+else
+    # Create new location by default
+    SPECS_DIR=".vibedraft/specs"
+    mkdir -p "$SPECS_DIR"
+fi
 
 # Create feature spec file
-SPEC_FILE="specs/${FEATURE_SLUG}.md"
+SPEC_FILE="${SPECS_DIR}/${FEATURE_SLUG}.md"
 
 if [ -f "$SPEC_FILE" ]; then
     echo -e "${RED}Error: Feature spec already exists: ${SPEC_FILE}${NC}"

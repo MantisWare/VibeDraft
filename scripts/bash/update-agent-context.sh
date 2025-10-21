@@ -78,7 +78,7 @@ This project uses VibeDraft for spec-driven development.
 
 ## Key Directories
 
-- \`specs/\` - Feature specifications
+- \`.vibedraft/specs/\` - Feature specifications (or \`specs/\` for legacy projects)
 - \`plans/\` - Implementation plans
 - \`tasks/\` - Actionable task lists
 - \`.vibedraft/\` - Templates and scripts

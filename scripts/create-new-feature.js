@@ -7,6 +7,14 @@
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Import specs locator utility
+const specsLocatorPath = path.join(__dirname, '..', 'lib', 'specs-locator.js');
+const { findSpecsDirectory } = await import(specsLocatorPath);
 
 const args = process.argv.slice(2);
 let jsonMode = false;
@@ -64,7 +72,8 @@ try {
 
 process.chdir(repoRoot);
 
-const specsDir = path.join(repoRoot, 'specs');
+// Find specs directory (supports both old and new locations)
+const specsDir = await findSpecsDirectory(repoRoot);
 fs.ensureDirSync(specsDir);
 
 // Find highest existing feature number

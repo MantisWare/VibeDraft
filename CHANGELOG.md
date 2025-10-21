@@ -9,7 +9,143 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-01-21
+
+### 🧠 Memory Bank System - Multi-Agent Support
+
+This release introduces the comprehensive Memory Bank system for all supported AI agents, providing persistent project context across sessions.
+
 ### Added
+
+- **Memory Bank System** - Persistent knowledge base for AI assistants
+  - Automatic creation during `vibedraft init` for all agents
+  - Support for all 12 AI agents (Cursor, Claude, Copilot, Gemini, Windsurf, Qwen, opencode, Amazon Q, Codex, Kilocode, Auggie, Roo)
+  - Core files: projectbrief.md, productContext.md, systemPatterns.md, techContext.md, activeContext.md, progress.md
+  - Agent-specific formats and directory structures
+  - Notes/ subdirectory for additional documentation
+  
+- **Memory Bank CLI Command** - `vibedraft memory-bank`
+  - Create Memory Bank for specific agent: `--agent <type>`
+  - Create for all detected agents: `--all`
+  - Update existing Memory Bank: `--update`
+  - Minimal mode for smaller projects: `--minimal`
+  - Auto-population with project data: `--populate` (default)
+  
+- **Minimal Memory Bank Mode** - `--minimal` flag
+  - Streamlined structure for small/focused projects
+  - Only creates essential files: projectbrief.md, techContext.md, activeContext.md
+  - Can be upgraded to full structure later
+  - Available in both `init` and `memory-bank` commands
+  
+- **Intelligent Auto-Population**
+  - Populates Memory Bank with detected project information
+  - Integrates with technology stack detection from v1.0.0
+  - Conservative approach - only fills in 100% certain information
+  - Clear placeholders for items requiring user input
+  - Project name, tech stack, dependencies auto-filled
+  
+- **Slash Command Template** - `/vibedraft.memory-bank`
+  - Comprehensive guide for AI agents on Memory Bank usage
+  - Update process and workflow documentation
+  - Consistency checking guidelines
+  - Minimal vs Full mode recommendations
+  
+- **Core & Memory Bank Rules** - Agent-specific documentation
+  - Plan/Act mode operating principles
+  - Memory Bank structure and hierarchy
+  - Update workflows and best practices
+  - File relationship documentation
+
+### Changed
+
+- **Init Command** - Now creates Memory Bank by default
+  - Automatically generates Memory Bank during project initialization
+  - Respects `--minimal` flag for streamlined setup
+  - Integrates with tech stack detection for auto-population
+  
+- **Agent Configuration** - Enhanced support for all agents
+  - Cursor: `.cursor/rules/memory-bank/` with .mdc format
+  - Claude: `.claude/memory-bank/` with Markdown
+  - Copilot: `.github/memory-bank/` with Markdown
+  - Gemini: `.gemini/memory-bank/` with Markdown
+  - Windsurf: `.windsurf/memory-bank/` with Markdown
+  - Qwen: `.qwen/memory-bank/` with Markdown
+  - opencode: `.opencode/memory-bank/` with Markdown
+  - Amazon Q: `.amazonq/memory-bank/` with Markdown
+  - And more...
+
+### Documentation
+
+- **README.md** - Added Memory Bank section
+  - Complete feature documentation
+  - Usage examples for all commands
+  - Minimal vs Full mode comparison
+  - Agent support matrix
+  
+- **Agent Support** - Memory Bank available for all agents
+  - Full support across all 12+ AI coding assistants
+  - Consistent structure with agent-specific formatting
+  - Auto-detection of installed agents
+
+### Benefits
+
+- **Persistent Context** - AI assistants maintain project understanding across sessions
+- **Reduced Onboarding** - New team members and AI agents get up to speed faster
+- **Consistent Documentation** - Structured approach to project knowledge
+- **Multi-Agent Flexibility** - Use any supported AI assistant with same context
+- **Incremental Adoption** - Start minimal, expand as needed
+
+## [1.0.0] - 2025-01-21
+
+### 🎉 Major Release: File Structure Reorganization
+
+This release reorganizes VibeDraft's file structure to keep all VibeDraft-managed files within the `.vibedraft/` directory, preventing conflicts with existing applications.
+
+### ⚠️ BREAKING CHANGES
+
+- **Specs Directory Moved**: Feature specifications now live in `.vibedraft/specs/` instead of root `specs/`
+  - **Backward Compatibility**: Both locations are supported - VibeDraft will check both paths
+  - Existing projects with `specs/` in root continue to work
+  - New projects use `.vibedraft/specs/` by default
+  
+- **Documentation Moved**:
+  - `VIBEDRAFT_README.md` → `.vibedraft/docs/VIBEDRAFT_README.md`
+  - `spec-driven.md` → `.vibedraft/docs/spec-driven.md`
+  
+### Added
+
+- **Reorganized File Structure** - All VibeDraft files now in `.vibedraft/`
+  - Created `.vibedraft/docs/` for VibeDraft documentation
+  - Created `.vibedraft/specs/` for feature specifications
+  - Created `.vibedraft/.gitignore` for VibeDraft-specific ignores
+  - New utility module `lib/specs-locator.js` for finding specs in both locations
+  
+- **Automatic README Creation** - Creates basic `README.md` in root if it doesn't exist
+  - Includes links to VibeDraft documentation
+  - Provides project structure template
+  - Only created when no README exists (preserves existing README)
+  
+- **Enhanced .gitignore Management**
+  - Creates project-level `.gitignore` in root if it doesn't exist
+  - Includes comprehensive ignore patterns (node_modules, build outputs, etc.)
+  - Creates `.vibedraft/.gitignore` for VibeDraft-specific temporary files
+  
+- **Technology Stack Detection** (from v0.1.0) - Intelligent existing project analysis
+  - Automatic detection of existing applications during initialization with `--here` flag
+  - Scans `package.json` for dependencies, devDependencies, scripts, and engines
+  - Detects frameworks (React, Next.js, Vue, Angular, Express, NestJS, and more)
+  - Identifies programming languages by file extensions (TypeScript, JavaScript, Python, etc.)
+  - Recognizes build tools (Vite, Webpack, Rollup, esbuild, Turborepo, Nx)
+  - Determines project type (monorepo, web-app, fullstack, mobile, library, cli)
+  - Detects package manager (npm, yarn, pnpm)
+  - Identifies architectural patterns (JAMstack, microservices, TypeScript-first)
+  - Automatically enriches constitution with detected technology stack
+  - Generates technology-specific constraints and principles
+  - Pre-populates plan template Technical Context from detected stack
+  - Displays beautiful summary of detected stack before initialization
+  - Saves detection metadata to `.vibedraft/memory/tech-stack-detected.json`
+  - New modules: `lib/tech-detector.js` and `lib/constitution-builder.js`
+
 - **Release Package System** - Automated GitHub release creation
   - `npm run build:releases` - Generate template packages for all AI agents
   - `npm run release:github` - Create GitHub release with packages

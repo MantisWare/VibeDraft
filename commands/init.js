@@ -6,6 +6,9 @@ import { checkTool, ensureExecutableScripts } from '../lib/utils.js';
 import { isGitRepo, initGitRepo } from '../lib/git.js';
 import { downloadAndExtractTemplate } from '../lib/download.js';
 import { StepTracker } from '../lib/tracker.js';
+import { detectTechnologyStack } from '../lib/tech-detector.js';
+import { enrichConstitutionWithTechStack, displayTechStackSummary } from '../lib/constitution-builder.js';
+import { generateMemoryBank } from '../lib/memory-bank-builder.js';
 
 export async function initCommand(projectName, options) {
   // Handle '.' as shorthand for current directory
@@ -32,6 +35,20 @@ export async function initCommand(projectName, options) {
     const existingItems = await fs.readdir(projectPath);
     if (existingItems.length > 0) {
       console.log(chalk.yellow(`🎨 Heads up! Found ${existingItems.length} items chillin' here already`));
+
+      // Detect existing technology stack
+      const techStack = await detectTechnologyStack(projectPath);
+
+      if (techStack.hasExistingApp) {
+        console.log('');
+        console.log(chalk.cyan('🔍 Detected existing application:'));
+        displayTechStackSummary(techStack);
+        console.log(chalk.green('✨ VibeDraft will populate your constitution with this tech stack'));
+
+        // Store for later use
+        options.detectedTechStack = techStack;
+      }
+
       console.log(chalk.yellow('We\'ll merge the vibes, but some files might get a fresh coat of paint 🖌️'));
 
       if (options.force) {
@@ -157,6 +174,7 @@ export async function initCommand(projectName, options) {
     ['zip-list', 'Archive contents'],
     ['extracted-summary', 'Extraction summary'],
     ['chmod', 'Ensure scripts executable'],
+    ['constitution', 'Enrich constitution'],
     ['cleanup', 'Cleanup'],
     ['git', 'Initialize git repository'],
     ['final', 'Finalize']
@@ -187,6 +205,34 @@ export async function initCommand(projectName, options) {
 
     // Ensure scripts are executable
     await ensureExecutableScripts(projectPath, tracker);
+
+    // Enrich constitution with detected tech stack
+    if (options.detectedTechStack?.hasExistingApp === true) {
+      tracker.start('constitution');
+      try {
+        const constitutionPath = path.join(projectPath, '.vibedraft', 'memory', 'constitution.md');
+        await enrichConstitutionWithTechStack(constitutionPath, options.detectedTechStack);
+        tracker.complete('constitution', 'tech stack documented');
+      } catch (error) {
+        tracker.error('constitution', error.message ?? 'enrichment failed');
+      }
+    } else {
+      tracker.skip('constitution', 'no existing app detected');
+    }
+
+    // Create Memory Bank
+    tracker.start('memory-bank');
+    try {
+      await generateMemoryBank(projectPath, selectedAi, {
+        minimal: options.minimal ?? false,
+        populate: true,
+        techStack: options.detectedTechStack,
+        verbose: false
+      });
+      tracker.complete('memory-bank', options.minimal ? 'minimal created' : 'created');
+    } catch (error) {
+      tracker.error('memory-bank', error.message ?? 'creation failed');
+    }
 
     // Git step
     if (options.git !== false) {
@@ -301,11 +347,17 @@ export async function initCommand(projectName, options) {
   }
 
   stepsLines.push(`${stepNum}. Start using slash commands with your AI agent:`);
-  stepsLines.push(`   2.1 ${chalk.cyan('/vibedraft.constitution')} - Establish project principles`);
-  stepsLines.push(`   2.2 ${chalk.cyan('/vibedraft.draft')} - Create baseline specification`);
-  stepsLines.push(`   2.3 ${chalk.cyan('/vibedraft.plan')} - Create implementation plan`);
-  stepsLines.push(`   2.4 ${chalk.cyan('/vibedraft.tasks')} - Generate actionable tasks`);
-  stepsLines.push(`   2.5 ${chalk.cyan('/vibedraft.implement')} - Execute implementation`);
+  
+  // Add note if tech stack was detected
+  if (options.detectedTechStack?.hasExistingApp === true) {
+    stepsLines.push(`   ${chalk.yellow('Note:')} Constitution pre-populated with detected tech stack`);
+  }
+  
+  stepsLines.push(`   ${stepNum}.1 ${chalk.cyan('/vibedraft.constitution')} - Establish project principles`);
+  stepsLines.push(`   ${stepNum}.2 ${chalk.cyan('/vibedraft.draft')} - Create baseline specification`);
+  stepsLines.push(`   ${stepNum}.3 ${chalk.cyan('/vibedraft.plan')} - Create implementation plan`);
+  stepsLines.push(`   ${stepNum}.4 ${chalk.cyan('/vibedraft.tasks')} - Generate actionable tasks`);
+  stepsLines.push(`   ${stepNum}.5 ${chalk.cyan('/vibedraft.implement')} - Execute implementation`);
 
   console.log(createPanel(stepsLines.join('\n'), 'Next Steps', 'cyan'));
 

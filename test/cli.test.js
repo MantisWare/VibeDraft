@@ -488,16 +488,25 @@ describe('VibeDraft CLI Tests', () => {
     });
 
     it('should create specs directory', () => {
-      const specsPath = path.join(testTmpDir, projectName, 'specs');
+      const specsPath = path.join(testTmpDir, projectName, '.vibedraft', 'specs');
       assert.strictEqual(fs.existsSync(specsPath), true);
     });
 
     it('should create VIBEDRAFT_README.md', () => {
-      const readmePath = path.join(testTmpDir, projectName, 'VIBEDRAFT_README.md');
+      const readmePath = path.join(testTmpDir, projectName, '.vibedraft', 'docs', 'VIBEDRAFT_README.md');
       assert.strictEqual(fs.existsSync(readmePath), true);
 
       const content = fs.readFileSync(readmePath, 'utf8');
       assert.match(content, /VibeDraft/i);
+    });
+
+    it('should create project README.md', () => {
+      const readmePath = path.join(testTmpDir, projectName, 'README.md');
+      assert.strictEqual(fs.existsSync(readmePath), true);
+
+      const content = fs.readFileSync(readmePath, 'utf8');
+      assert.match(content, /VibeDraft Documentation/i);
+      assert.match(content, /Getting Started/i);
     });
 
     it('should create .gitignore', () => {

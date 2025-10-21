@@ -125,6 +125,54 @@ Pre-built templates for:
 - Sequential feature numbering
 - Clean commit history
 
+### 🔍 **Intelligent Technology Stack Detection** ✨ NEW in v0.1.0
+When initializing VibeDraft in an **existing project**, it automatically:
+- **Scans** your `package.json` for dependencies and configuration
+- **Detects** frameworks (React, Next.js, Vue, Angular, Express, NestJS, and 20+ more)
+- **Identifies** languages by file patterns (TypeScript, JavaScript, Python, Rust, Go, etc.)
+- **Recognizes** build tools (Vite, Webpack, Rollup, esbuild, Turborepo, Nx)
+- **Determines** project type (monorepo, web-app, fullstack, mobile, library, cli)
+- **Discovers** package manager (npm, yarn, pnpm)
+- **Analyzes** architectural patterns (JAMstack, microservices, TypeScript-first)
+- **Auto-populates** your project constitution with detected tech stack
+- **Generates** technology-specific principles and constraints
+- **Pre-fills** plan templates with known technical context
+
+**Before & After:**
+
+**Before (v0.0.x):**
+```bash
+$ vibedraft init . --here
+🎨 Found files here already
+Do you want to continue? (y/n)
+```
+
+**After (v0.1.0):**
+```bash
+$ vibedraft init . --here
+🎨 Found files here already
+
+🔍 Detected existing application:
+   📦 Package: my-app v1.2.3
+   🔧 Tech Stack:
+      • React 18.2.0 (Frontend Framework)
+      • TypeScript 5.0.4 (primary language)
+      • Vite 4.3.9 (build tool)
+      • Jest 29.5.0 (testing)
+   📁 Project Type: Web Application (frontend)
+   📂 Structure: src/, public/, tests/
+
+✨ VibeDraft will populate your constitution with this tech stack
+Do you want to continue? (y/n)
+```
+
+**Benefits:**
+- 🚀 **Zero Manual Setup** - No need to manually document your tech stack
+- 📋 **Instant Context** - AI understands your project from day one
+- 🎯 **Better Planning** - Plans pre-filled with correct frameworks and tools
+- 🔒 **Consistent Constraints** - Auto-generated principles match your stack
+- 📚 **Living Documentation** - Constitution stays in sync with reality
+
 ---
 
 ## 🎯 Core Commands
@@ -162,8 +210,8 @@ VibeDraft is **seriously smart** about your project! When you run `/vibedraft.dr
 ### What Gets Scanned 🔍
 
 - ✅ **Root-level docs**: `README.md`, `ARCHITECTURE.md`, `CONTRIBUTING.md`, `DESIGN.md`
-- ✅ **Feature specs**: All specifications in `specs/` directory
-- ✅ **Documentation folders**: `docs/`, `.github/`, `guides/`, etc.
+- ✅ **Feature specs**: All specifications in `.vibedraft/specs/` directory (or `specs/` for legacy projects)
+- ✅ **Documentation folders**: `docs/`, `.github/`, `guides/`, `.vibedraft/docs/`, etc.
 - ✅ **Nested markdown**: ANY `.md` file anywhere in your project
 - ❌ **Excluded**: `node_modules/`, `.git/`, `build/`, `dist/`, coverage directories
 
@@ -187,9 +235,11 @@ project/
 │   ├── api-guidelines.md  # 📡 API conventions
 │   ├── database.md        # 💾 Data model
 │   └── security.md        # 🔒 Security practices
-├── specs/
-│   ├── auth-system.md     # 🔐 Existing features
-│   └── user-profile.md    # 👤 Related features
+├── .vibedraft/
+│   ├── specs/
+│   │   ├── 001-auth-system/spec.md    # 🔐 Existing features
+│   │   └── 002-user-profile/spec.md   # 👤 Related features
+│   └── docs/              # 📚 VibeDraft documentation
 └── .github/
     └── workflows.md       # ⚙️ CI/CD info
 ```
@@ -208,7 +258,7 @@ project/
 # You have these docs:
 # - README.md (mentions React + TypeScript)
 # - ARCHITECTURE.md (describes microservices)  
-# - specs/user-auth.md (existing auth system)
+# - .vibedraft/specs/001-user-auth/spec.md (existing auth system)
 # - docs/api-guidelines.md (REST conventions)
 
 /vibedraft.draft "Add user notifications"
@@ -230,6 +280,206 @@ VibeDraft learns from your project's documentation. Well-documented projects get
 - 🤝 Consistent patterns and terminology
 
 **Pro Tip**: Keep a `docs/` folder with architecture decisions, guidelines, and patterns. VibeDraft will use it all! 🎸
+
+---
+
+## 🧠 Memory Bank System
+
+VibeDraft includes a **Memory Bank** - a persistent knowledge system that helps AI assistants maintain context across sessions, memory resets, and team handoffs.
+
+### What is the Memory Bank? 💾
+
+The Memory Bank is a structured set of documentation files that capture your project's essence in a way AI assistants can reliably reference. Think of it as your project's "memory" that persists even when AI sessions reset.
+
+### Core Files 📚
+
+The Memory Bank consists of six interconnected files:
+
+```
+.cursor/rules/memory-bank/  (or .claude/, .github/, etc.)
+├── projectbrief.md         # Foundation - what we're building
+├── productContext.md       # Why - problems solved, users, value  
+├── systemPatterns.md       # How - architecture, patterns, design
+├── techContext.md          # What - technologies, setup, constraints
+├── activeContext.md        # Now - current focus, recent changes
+├── progress.md             # Status - what works, what's left
+└── Notes/                  # Additional detailed documentation
+```
+
+### File Hierarchy 🏗️
+
+Files build upon each other:
+
+1. **projectbrief.md** → Foundation document
+2. **productContext.md, systemPatterns.md, techContext.md** → Different perspectives
+3. **activeContext.md** → Combines all for current work
+4. **progress.md** → Tracks implementation status
+
+### Automatic Creation ✨
+
+Memory Bank is created automatically during `vibedraft init`:
+
+```bash
+# Full Memory Bank (all 6 files)
+vibedraft init my-project --ai cursor
+
+# Minimal Memory Bank (3 essential files)
+vibedraft init my-project --ai cursor --minimal
+```
+
+### Manual Management 🎛️
+
+Create or update Memory Bank independently:
+
+```bash
+# Create for specific agent
+vibedraft memory-bank --agent cursor
+
+# Create for all detected agents
+vibedraft memory-bank --all
+
+# Create minimal version
+vibedraft memory-bank --agent claude --minimal
+
+# Update existing Memory Bank
+vibedraft memory-bank --update --agent cursor
+```
+
+### Minimal vs Full Mode 🎯
+
+**Minimal Mode** (`--minimal` flag):
+- **Best for**: Small projects, prototypes, focused tools, solo developers
+- **Files**: projectbrief.md, techContext.md, activeContext.md
+- **Use when**: Minimal documentation overhead desired, scope is well-defined
+
+**Full Mode** (default):
+- **Best for**: Large projects, teams, complex systems, long-term projects
+- **Files**: All 6 core files + Notes/ directory
+- **Use when**: Complex architecture, multiple stakeholders, project will evolve significantly
+
+### Intelligent Auto-Population 🤖
+
+VibeDraft automatically populates Memory Bank with project data:
+
+**What gets auto-filled** (100% certain):
+- ✅ Project name (from directory)
+- ✅ Technology stack (from detection)
+- ✅ Core dependencies (from package.json)
+- ✅ Build tools and setup requirements
+- ✅ Current date and initialization status
+
+**What requires user input** (clear placeholders):
+- 📝 Project scope and deliverables
+- 📝 Target users and use cases
+- 📝 Success metrics and timeline
+- 📝 Architectural details
+- 📝 Business value and UX goals
+
+### Multi-Agent Support 🌐
+
+Memory Bank works with **all supported AI agents**:
+
+| Agent | Location | Format | Status |
+|-------|----------|--------|--------|
+| **Cursor** | `.cursor/rules/memory-bank/` | MDC | ✅ Full Support |
+| **Claude Code** | `.claude/memory-bank/` | Markdown | ✅ Full Support |
+| **GitHub Copilot** | `.github/memory-bank/` | Markdown | ✅ Full Support |
+| **Gemini CLI** | `.gemini/memory-bank/` | Markdown | ✅ Full Support |
+| **Windsurf** | `.windsurf/memory-bank/` | Markdown | ✅ Full Support |
+| **Qwen Code** | `.qwen/memory-bank/` | Markdown | ✅ Full Support |
+| **opencode** | `.opencode/memory-bank/` | Markdown | ✅ Full Support |
+| **Amazon Q** | `.amazonq/memory-bank/` | Markdown | ✅ Full Support |
+| **Codex** | `.codex/memory-bank/` | Markdown | ✅ Full Support |
+| **Kilocode** | `.kilocode/memory-bank/` | Markdown | ✅ Full Support |
+| **Auggie** | `.augment/memory-bank/` | Markdown | ✅ Full Support |
+| **Roo** | `.roo/memory-bank/` | Markdown | ✅ Full Support |
+
+### Usage in AI Sessions 💬
+
+Within your AI assistant, use the `/vibedraft.memory-bank` slash command to:
+
+- Create Memory Bank for your agent
+- Update Memory Bank with recent changes
+- Review and fill in placeholders
+- Maintain consistency across files
+
+Example workflow:
+
+```
+User: "update memory bank"
+
+AI: Reviewing all Memory Bank files...
+    ✓ activeContext.md - Updated with recent authentication work
+    ✓ progress.md - Marked user registration as complete
+    ✓ techContext.md - Added JWT and bcrypt dependencies
+    ✓ Other files - No changes needed
+    
+    Memory Bank updated successfully!
+```
+
+### Benefits 🎁
+
+- **🔄 Persistent Context** - AI maintains understanding across sessions
+- **👥 Team Onboarding** - New members and AI agents get up to speed faster
+- **📖 Consistent Documentation** - Structured approach to project knowledge
+- **🔀 Multi-Agent Flexibility** - Use any AI assistant with same context
+- **📈 Incremental Adoption** - Start minimal, expand as complexity grows
+- **🎯 Reduced Repetition** - Stop re-explaining project details to AI
+- **⚡ Faster Development** - AI has context without lengthy explanations
+
+### Best Practices 💡
+
+1. **Start Minimal, Expand Later**
+   - Begin with `--minimal` for new projects
+   - Add full structure when complexity grows
+
+2. **Regular Updates**
+   - Update `activeContext.md` frequently (weekly)
+   - Update `progress.md` after features complete
+   - Update others when major changes occur
+
+3. **Use Notes/ for Details**
+   - Create feature-specific docs in Notes/
+   - Keep core files concise
+   - Link from core files to detailed notes
+
+4. **Respect File Boundaries**
+   - Don't duplicate information across files
+   - Reference other files instead of repeating
+   - Keep each file focused on its purpose
+
+5. **Fill Placeholders Gradually**
+   - Start with what you know
+   - Add details as project evolves
+   - Don't over-document too early
+
+### Example Session 🚀
+
+```bash
+# Initialize project with Memory Bank
+$ vibedraft init my-app --ai cursor --here
+
+🔍 Detected existing application:
+   • React 18.2.0
+   • TypeScript 5.3.0
+   • Vite 5.0.0
+   • 45 dependencies detected
+
+✨ VibeDraft will populate your constitution with this tech stack
+✓ Memory Bank created for cursor
+  Location: .cursor/rules/memory-bank
+  Files: 6 (full)
+
+📚 Memory Bank created!
+   Review and fill in placeholders in:
+   .cursor/rules/memory-bank/
+```
+
+### Learning More 📖
+
+- See `templates/commands/vibedraft.memory-bank.md` for detailed AI usage guide
+- Check individual Memory Bank files for inline documentation
+- Use `/vibedraft.memory-bank` command within your AI assistant
 
 ---
 
@@ -353,7 +603,7 @@ After running `vibedraft init`, you'll get:
 
 ```
 your-project/
-├── .vibedraft/              # VibeDraft magic happens here ✨
+├── .vibedraft/              # All VibeDraft files live here! ✨
 │   ├── scripts/            # Automation scripts
 │   │   └── bash/          # Unix/Linux/macOS/Windows scripts
 │   ├── templates/         # Spec, plan, and task templates
@@ -361,15 +611,30 @@ your-project/
 │   │   ├── spec-template.md
 │   │   ├── plan-template.md
 │   │   └── tasks-template.md
-│   └── memory/
-│       └── constitution.md  # Project principles
-├── specs/                  # Your feature specs live here
-│   └── 001-your-feature/
-│       ├── spec.md        # Feature specification
-│       ├── plan.md        # Implementation plan
-│       └── tasks.md       # Actionable tasks
-└── [your AI agent config] # .claude/, .cursor/, etc.
+│   ├── memory/
+│   │   └── constitution.md  # Project principles
+│   ├── specs/             # 🆕 Your feature specs (moved from root)
+│   │   └── 001-your-feature/
+│   │       ├── spec.md    # Feature specification
+│   │       ├── plan.md    # Implementation plan
+│   │       └── tasks.md   # Actionable tasks
+│   ├── docs/              # 🆕 VibeDraft documentation
+│   │   ├── VIBEDRAFT_README.md  # VibeDraft guide
+│   │   └── spec-driven.md       # SDD methodology
+│   └── .gitignore         # 🆕 VibeDraft-specific ignores
+├── .gitignore             # Project-level ignores
+├── README.md              # Your project README (created if doesn't exist)
+└── [your AI agent config] # .claude/, .cursor/, etc. (stays in root)
 ```
+
+### 🆕 v1.0.0 Structure Changes
+
+**All VibeDraft files now live in `.vibedraft/`** to prevent conflicts with your application:
+
+- ✅ **Specs moved**: `.vibedraft/specs/` (was `specs/` in root)
+- ✅ **Docs organized**: `.vibedraft/docs/` (was root-level files)
+- ✅ **Backward compatible**: Supports both old (`specs/`) and new (`.vibedraft/specs/`) locations
+- ✅ **Clean root**: Only README, .gitignore, and agent configs in root
 
 ---
 
