@@ -450,6 +450,7 @@
         <div class="badges">
           <span class="badge">📦 npm install -g vibedraft-cli</span>
           <span class="badge">🚀 vibedraft init my-project</span>
+          <span class="badge">🧠 v1.1.1 - Memory Bank Edition</span>
         </div>
       </div>
     </header>
@@ -462,6 +463,7 @@
           <li><a href="#workflow">Workflow</a></li>
           <li><a href="#commands">Commands</a></li>
           <li><a href="#agents">AI Agents</a></li>
+          <li><a href="#memory-bank">Memory Bank 🆕</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#examples">Examples</a></li>
           <li><a href="#best-practices">Best Practices</a></li>
@@ -564,9 +566,16 @@ vibedraft check</code></pre>
         </p>
         <pre><code>vibedraft check</code></pre>
         <p>
-          This will verify that all required tools are installed and properly
-          configured.
+          This will show your VibeDraft version, verify that all required tools
+          are installed and properly configured, and display a summary of
+          available tools in your development environment.
         </p>
+
+        <div class="alert alert-success">
+          <strong>🆕 v1.1.1:</strong> The check command now displays version
+          information and attribution (MantisWare - Waldo Marais) along with an
+          enhanced visual design!
+        </div>
       </section>
 
       <!-- Workflow -->
@@ -574,9 +583,16 @@ vibedraft check</code></pre>
         <h2>🌊 The VibeDraft Workflow</h2>
         <p style="font-size: 1.1rem; margin-bottom: 40px">
           Once you initialize a project, your AI coding assistant gets access to
-          8 powerful slash commands that guide you through the entire
+          9 powerful slash commands that guide you through the entire
           development process:
         </p>
+
+        <div class="alert alert-info">
+          <strong>🆕 v1.1.0:</strong> Memory Bank system now automatically
+          created during initialization! It provides persistent project context
+          across AI sessions. Use the new
+          <code>/vibedraft.memory-bank</code> command to manage it.
+        </div>
 
         <div class="workflow-step">
           <div class="step-number">1</div>
@@ -692,10 +708,45 @@ vibedraft check</code></pre>
           </div>
         </div>
 
+        <div
+          class="workflow-step"
+          style="
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+          "
+        >
+          <div
+            class="step-number"
+            style="
+              background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            "
+          >
+            🧠
+          </div>
+          <div class="step-content">
+            <h4>
+              /vibedraft.memory-bank 💾
+              <span class="step-optional">NEW v1.1.0</span>
+            </h4>
+            <p><strong>Manage persistent context</strong></p>
+            <p>
+              Update or create the Memory Bank - a persistent knowledge system
+              that helps AI maintain project context across sessions. Perfect
+              for team handoffs and long-term projects!
+            </p>
+            <pre><code>/vibedraft.memory-bank</code></pre>
+            <p style="margin-top: 10px; font-size: 0.95rem; color: #4a5568">
+              The Memory Bank is automatically created during initialization and
+              includes 6 core files (or 3 in minimal mode) that capture your
+              project's essence.
+            </p>
+          </div>
+        </div>
+
         <div class="alert alert-success">
           <strong>🎉 Boom!</strong> From idea to implementation with clear,
           trackable steps. Your specs and code stay in perfect harmony
-          throughout the entire process.
+          throughout the entire process. Plus, your project context persists
+          across AI sessions!
         </div>
       </section>
 
@@ -725,8 +776,29 @@ vibedraft check</code></pre>
             </tr>
             <tr>
               <td><code>vibedraft check</code></td>
-              <td>🔍 Check your development environment</td>
+              <td>
+                🔍 Check your development environment
+                <span class="badge" style="font-size: 0.7rem; padding: 2px 8px"
+                  >v1.1.1</span
+                >
+              </td>
               <td><code>vibedraft check</code></td>
+            </tr>
+            <tr>
+              <td><code>vibedraft memory-bank</code></td>
+              <td>
+                🧠 Create/manage Memory Bank
+                <span
+                  class="badge"
+                  style="
+                    font-size: 0.7rem;
+                    padding: 2px 8px;
+                    background: rgba(16, 185, 129, 0.2);
+                  "
+                  >NEW v1.1.0</span
+                >
+              </td>
+              <td><code>vibedraft memory-bank --agent cursor</code></td>
             </tr>
             <tr>
               <td><code>vibedraft --version</code></td>
@@ -743,7 +815,7 @@ vibedraft check</code></pre>
 
         <h3>Slash Commands (In Your AI Agent)</h3>
         <p style="margin: 20px 0">
-          These commands are available in your AI coding assistant after
+          These 9 commands are available in your AI coding assistant after
           initializing a VibeDraft project:
         </p>
 
@@ -795,6 +867,30 @@ vibedraft check</code></pre>
               <td><code>/vibedraft.implement</code></td>
               <td>🚀 Execute implementation</td>
               <td>When ready to code - AI reads everything</td>
+            </tr>
+            <tr
+              style="
+                background: linear-gradient(
+                  135deg,
+                  #667eea15 0%,
+                  #764ba215 100%
+                );
+              "
+            >
+              <td>
+                <code>/vibedraft.memory-bank</code>
+                <span
+                  class="badge"
+                  style="
+                    font-size: 0.7rem;
+                    padding: 2px 8px;
+                    background: rgba(16, 185, 129, 0.2);
+                  "
+                  >NEW v1.1.0</span
+                >
+              </td>
+              <td>🧠 Update Memory Bank</td>
+              <td>Anytime - maintain persistent project context</td>
             </tr>
           </tbody>
         </table>
@@ -875,6 +971,115 @@ vibedraft init my-project</code></pre>
         </div>
       </section>
 
+      <!-- Memory Bank Section -->
+      <section
+        id="memory-bank"
+        style="
+          background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+          border: 2px solid var(--primary);
+        "
+      >
+        <h2>
+          🧠 Memory Bank System
+          <span class="badge" style="background: var(--success); color: white"
+            >NEW v1.1.0</span
+          >
+        </h2>
+        <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px">
+          <strong>Persistent Project Context for AI Assistants</strong>
+        </p>
+        <p style="font-size: 1.1rem">
+          The Memory Bank is a structured documentation system that helps AI
+          assistants maintain understanding of your project across sessions,
+          memory resets, and team handoffs.
+        </p>
+
+        <h3>Core Files (Full Mode)</h3>
+        <div class="feature-grid">
+          <div class="feature-card" style="background: white">
+            <h4 style="color: var(--primary)">📄 projectbrief.md</h4>
+            <p>Foundation - what we're building</p>
+          </div>
+          <div class="feature-card" style="background: white">
+            <h4 style="color: var(--primary)">💡 productContext.md</h4>
+            <p>Why - problems solved, users, value</p>
+          </div>
+          <div class="feature-card" style="background: white">
+            <h4 style="color: var(--primary)">🏗️ systemPatterns.md</h4>
+            <p>How - architecture, patterns, design</p>
+          </div>
+          <div class="feature-card" style="background: white">
+            <h4 style="color: var(--primary)">⚙️ techContext.md</h4>
+            <p>What - technologies, setup, constraints</p>
+          </div>
+          <div class="feature-card" style="background: white">
+            <h4 style="color: var(--primary)">📍 activeContext.md</h4>
+            <p>Now - current focus, recent changes</p>
+          </div>
+          <div class="feature-card" style="background: white">
+            <h4 style="color: var(--primary)">✅ progress.md</h4>
+            <p>Status - what works, what's left</p>
+          </div>
+        </div>
+
+        <h3>Automatic Creation</h3>
+        <p style="margin: 20px 0">
+          Memory Bank is automatically created during initialization:
+        </p>
+        <pre><code># Full Memory Bank (6 core files)
+vibedraft init my-project --ai cursor
+
+# Minimal Memory Bank (3 essential files: projectbrief, techContext, activeContext)
+vibedraft init my-project --ai cursor --minimal</code></pre>
+
+        <h3>Manual Management</h3>
+        <pre><code># Create for specific agent
+vibedraft memory-bank --agent cursor
+
+# Create for all detected agents
+vibedraft memory-bank --all
+
+# Create minimal version
+vibedraft memory-bank --agent claude --minimal
+
+# Update existing Memory Bank
+vibedraft memory-bank --update --agent cursor</code></pre>
+
+        <h3>Intelligent Auto-Population</h3>
+        <p style="margin: 20px 0">
+          VibeDraft automatically populates Memory Bank files with:
+        </p>
+        <ul style="margin-left: 30px; line-height: 2">
+          <li>✅ Project name (from directory)</li>
+          <li>✅ Technology stack (from detection)</li>
+          <li>✅ Core dependencies (from package.json)</li>
+          <li>✅ Build tools and setup requirements</li>
+          <li>✅ Current date and initialization status</li>
+        </ul>
+
+        <div class="alert alert-tip">
+          <strong>💡 Benefits:</strong>
+          <ul style="margin-left: 20px; margin-top: 10px; line-height: 2">
+            <li>
+              🔄 <strong>Persistent Context</strong> - AI maintains
+              understanding across sessions
+            </li>
+            <li>
+              👥 <strong>Team Onboarding</strong> - New members get up to speed
+              faster
+            </li>
+            <li>
+              📖 <strong>Consistent Documentation</strong> - Structured approach
+              to project knowledge
+            </li>
+            <li>
+              🔀 <strong>Multi-Agent Flexibility</strong> - Use any AI assistant
+              with same context
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <!-- Features -->
       <section id="features">
         <h2>🎸 Features That Rock</h2>
@@ -887,6 +1092,27 @@ vibedraft init my-project</code></pre>
               Write specifications that AI can execute. Keep specs and code in
               perfect harmony. Track every feature from conception to
               completion.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h4>
+              Memory Bank System
+              <span
+                class="badge"
+                style="
+                  background: var(--success);
+                  color: white;
+                  font-size: 0.7rem;
+                "
+                >NEW</span
+              >
+            </h4>
+            <p>
+              Persistent project context for AI assistants. Automatically
+              created and intelligently populated with your project's tech stack
+              and structure.
             </p>
           </div>
 
@@ -933,6 +1159,37 @@ vibedraft init my-project</code></pre>
               VibeDraft automatically scans all markdown files in your project
               for context. Document your patterns - the AI will read and apply
               them!
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📁</div>
+            <h4>
+              Clean File Structure
+              <span
+                class="badge"
+                style="
+                  background: var(--primary);
+                  color: white;
+                  font-size: 0.7rem;
+                "
+                >v1.0.0</span
+              >
+            </h4>
+            <p>
+              All VibeDraft files in <code>.vibedraft/</code> directory.
+              Backward compatible with old structure. Specs, docs, and scripts
+              organized cleanly.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h4>Tech Stack Detection</h4>
+            <p>
+              Automatically detects existing applications, frameworks,
+              languages, and dependencies. Populates constitution and Memory
+              Bank intelligently.
             </p>
           </div>
         </div>
@@ -1073,8 +1330,18 @@ cd my-existing-project
         <h3>🚀 Advanced Tips</h3>
         <ul style="margin-left: 30px; line-height: 2">
           <li>
+            <strong>Memory Bank Workflow:</strong> Use
+            <code>--minimal</code> flag for small projects, update Memory Bank
+            regularly with <code>/vibedraft.memory-bank</code>
+          </li>
+          <li>
             <strong>Context is King:</strong> VibeDraft scans ALL markdown files
             - use this for team knowledge
+          </li>
+          <li>
+            <strong>Tech Stack Detection:</strong> Initialize in existing
+            projects with <code>vibedraft init . --here</code> to auto-detect
+            your stack
           </li>
           <li>
             <strong>Template Customization:</strong> Modify templates in
@@ -1126,8 +1393,22 @@ npx vibedraft-cli init my-project</code></pre>
               For Cursor: Check <code>.cursor/settings.json</code> includes
               command recommendations
             </li>
+            <li>
+              Verify Memory Bank files exist in agent's rules directory (e.g.,
+              <code>.cursor/rules/memory-bank/</code>)
+            </li>
             <li>Try reloading your IDE/editor</li>
           </ul>
+        </div>
+
+        <div class="install-step">
+          <h4>Issue: Memory Bank not created</h4>
+          <p><strong>Solution:</strong></p>
+          <pre><code># Create Memory Bank manually
+vibedraft memory-bank --agent cursor
+
+# Or create for all detected agents
+vibedraft memory-bank --all</code></pre>
         </div>
 
         <div class="install-step">
@@ -1238,6 +1519,9 @@ git commit -m "Initial commit"</code></pre>
     <footer>
       <div class="container">
         <p style="font-size: 1.2rem; margin-bottom: 15px">✨ Keep Vibing! ✨</p>
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px">
+          VibeDraft v1.1.1 - Memory Bank Edition
+        </p>
         <p>
           Built with 💜 by
           <a href="https://waldomarais.com">Waldo Marais</a> @
@@ -1250,6 +1534,10 @@ git commit -m "Initial commit"</code></pre>
         </p>
         <p style="margin-top: 20px; opacity: 0.7">
           Where specs meet vibes, and code flows like magic 🌊
+        </p>
+        <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6">
+          🆕 Latest: Memory Bank system • Tech stack detection • Enhanced check
+          command
         </p>
       </div>
     </footer>
