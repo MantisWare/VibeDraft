@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2025-01-21
+
+### Changed
+
+- **Check Command Enhancement**
+  - Added version display to `vibedraft check` output
+  - Added author attribution (MantisWare - Waldo Marais)
+  - Improved output formatting with panel design
+  - Added tools availability summary (X/Y tools available)
+  - Enhanced completion messages and tips
+  - Better visual hierarchy and organization
+  
+- **Banner Improvement**
+  - Added spacing at the top of banner for better visual appeal
+  - Improved breathing room in terminal output
+
 ## [1.1.0] - 2025-01-21
 
 ### 🧠 Memory Bank System - Multi-Agent Support

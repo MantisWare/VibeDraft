@@ -44,7 +44,8 @@ gh auth login
 
 # Build and release
 npm run build:releases
-npm run release:github
+npm run release:githubnpm run lint
+
 ```
 
 ### If You Don't Have GitHub CLI

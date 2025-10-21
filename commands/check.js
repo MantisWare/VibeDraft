@@ -1,9 +1,28 @@
 import chalk from 'chalk';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { checkTool } from '../lib/utils.js';
 import { StepTracker } from '../lib/tracker.js';
+import { createPanel } from '../lib/ui.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf-8'));
 
 export async function checkCommand() {
-  console.log(chalk.bold('🔍 Vibing out your toolkit...\n'));
+  // Display header with version and attribution
+  const headerLines = [
+    chalk.bold.cyan('VibeDraft Environment Check'),
+    '',
+    `${chalk.dim('Version:')} ${chalk.green(packageJson.version)}`,
+    `${chalk.dim('Author:')} ${chalk.cyan('MantisWare')} ${chalk.dim('(Waldo Marais)')}`,
+    '',
+    chalk.dim('Checking your development environment...')
+  ];
+
+  console.log(createPanel(headerLines.join('\n'), '', 'cyan'));
+  console.log('');
 
   const tracker = new StepTracker('Check Available Tools');
 
@@ -38,14 +57,26 @@ export async function checkCommand() {
 
   console.log(tracker.render());
 
-  console.log(chalk.bold.green('\n🎉 Your VibeDraft is locked and loaded! Let\'s goooo! 🚀'));
+  // Summary
+  const availableCount = Object.values(results).filter(Boolean).length;
+  const totalCount = tools.length;
+
+  console.log('');
+  console.log(chalk.bold.green('✓ Environment Check Complete'));
+  console.log(chalk.cyan(`  ${availableCount}/${totalCount} tools available`));
+  console.log('');
 
   if (!results.git) {
-    console.log(chalk.dim('💡 Psst... git makes the vibe even better!'));
+    console.log(chalk.yellow('💡 Tip: Git is recommended for version control'));
   }
 
   const aiTools = ['claude', 'gemini', 'cursor-agent', 'qwen', 'windsurf', 'kilocode', 'opencode', 'codex', 'auggie', 'q'];
   if (!aiTools.some((tool) => results[tool])) {
-    console.log(chalk.dim('✨ Pro tip: An AI assistant will supercharge your flow!'));
+    console.log(chalk.yellow('✨ Tip: Install an AI coding assistant for the best experience'));
+  }
+
+  if (availableCount === totalCount) {
+    console.log('');
+    console.log(chalk.bold.green('🎉 Perfect setup! You\'re ready to rock! 🚀\n\n'));
   }
 }
