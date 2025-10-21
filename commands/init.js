@@ -175,6 +175,7 @@ export async function initCommand(projectName, options) {
     ['extracted-summary', 'Extraction summary'],
     ['chmod', 'Ensure scripts executable'],
     ['constitution', 'Enrich constitution'],
+    ['memory-bank', 'Generate memory bank'],
     ['cleanup', 'Cleanup'],
     ['git', 'Initialize git repository'],
     ['final', 'Finalize']

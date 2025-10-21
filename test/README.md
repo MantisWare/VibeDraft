@@ -1,6 +1,6 @@
 # VibeDraft CLI Test Suite
 
-Comprehensive test suite for the VibeDraft CLI covering all commands and functionality.
+Comprehensive test suite for the VibeDraft CLI covering all commands, analyzers, and functionality.
 
 ## Running Tests
 
@@ -14,19 +14,32 @@ npm test
 npm run test:verbose
 ```
 
-### Run directly with Node
+### Run specific test file
 ```bash
 node --test test/cli.test.js
+node --test test/analyzers.test.js
 ```
 
 ### Run with coverage (requires Node 20+)
 ```bash
-node --test --experimental-test-coverage test/cli.test.js
+npm run test:coverage
 ```
+
+## Test Structure
+
+### CLI Tests (`cli.test.js`)
+Tests for CLI commands and initialization workflow.
+
+### Analyzer Tests (`analyzers.test.js`)
+Tests for deep codebase analysis modules:
+- **Structure Analyzer**: Directory structure and pattern identification
+- **Pattern Detector**: Framework and coding pattern detection
+- **Documentation Parser**: README and package.json parsing
+- **Integration**: Full analysis workflow and concurrent execution
 
 ## Test Coverage
 
-### CLI Help and Version
+### CLI Commands
 - ✅ `--help` flag displays usage information
 - ✅ `--version` flag displays version number
 - ✅ `init --help` displays init command help
@@ -56,27 +69,44 @@ node --test --experimental-test-coverage test/cli.test.js
 ### File Structure Validation
 - ✅ Creates `.vibedraft/` directory
 - ✅ Creates `scripts/bash/` with all required scripts
-  - `check-prerequisites.sh`
-  - `create-new-feature.sh`
-  - `setup-plan.sh`
-  - `update-agent-context.sh`
-- ✅ Creates `templates/` directory with:
-  - `spec-template.md`
-  - `plan-template.md`
-  - `tasks-template.md`
-  - `checklist-template.md`
+- ✅ Creates `templates/` directory with templates
 - ✅ Creates `templates/commands/` with all command files
-  - `specify.md`
-  - `plan.md`
-  - `tasks.md`
-  - `implement.md`
-  - `analyze.md`
-  - `clarify.md`
-  - `checklist.md`
 - ✅ Creates `memory/constitution.md`
 - ✅ Creates agent-specific directories
+- ✅ Creates Memory Bank files (v1.2.0+)
 - ✅ Creates `specs/` directory
 - ✅ Creates `README.md` and `.gitignore`
+
+### Structure Analyzer Tests
+- ✅ Analyzes project directory structure
+- ✅ Detects and categorizes directories (components, services, utilities, etc.)
+- ✅ Identifies entry points (index.js, main.ts, App.tsx, etc.)
+- ✅ Detects architectural patterns (MVC, Component-Based, Redux, etc.)
+- ✅ Generates human-readable structure summaries
+- ✅ Handles empty and non-existent directories gracefully
+
+### Pattern Detector Tests
+- ✅ Detects framework patterns (React, TypeScript, Jest, etc.)
+- ✅ Identifies coding patterns (async/await, arrow functions, optional chaining, etc.)
+- ✅ Provides confidence levels for detected patterns
+- ✅ Extracts key patterns for memory bank population
+- ✅ Generates pattern summaries
+- ✅ Handles projects without patterns
+
+### Documentation Parser Tests
+- ✅ Parses README.md files and extracts sections
+- ✅ Extracts project description and features
+- ✅ Parses package.json for metadata
+- ✅ Identifies architecture documentation
+- ✅ Extracts setup and installation instructions
+- ✅ Extracts project context for memory bank
+- ✅ Handles missing or incomplete documentation
+
+### Integration Tests
+- ✅ Performs complete multi-analyzer analysis
+- ✅ Provides consistent results across analyzers
+- ✅ Handles concurrent analysis execution safely
+- ✅ All analyzers work together correctly
 
 ### Multiple AI Agent Support
 Tests initialization with all supported agents:
@@ -94,18 +124,7 @@ Tests initialization with all supported agents:
 - ✅ Handles network errors gracefully
 - ✅ Handles permission errors gracefully
 - ✅ Validates input parameters
-
-### Edge Cases
-- ✅ Very long project names
-- ✅ Special characters in project names
-- ✅ Rapid successive initializations
-- ✅ Project names with spaces
-
-### Integration Tests
-- ✅ Bash scripts are executable (Unix systems)
-- ✅ Command files have valid frontmatter
-- ✅ Templates have consistent structure
-- ✅ All files have appropriate content
+- ✅ Handles malformed files gracefully
 
 ## Test Environment
 
@@ -155,29 +174,6 @@ const result = await runCLIInteractive(
 );
 ```
 
-#### `checkVibeDraftStructure(projectDir)`
-Validate project structure.
-
-```javascript
-const structure = checkVibeDraftStructure('my-project');
-assert.strictEqual(structure.hasVibeDraftDir, true);
-```
-
-#### `fileExists(filePath)`
-Check if a file exists in the test directory.
-
-```javascript
-assert.strictEqual(fileExists('my-project/.vibedraft/memory/constitution.md'), true);
-```
-
-#### `readFile(filePath)`
-Read file contents from test directory.
-
-```javascript
-const content = readFile('my-project/README.md');
-assert.match(content, /VibeDraft/);
-```
-
 ## Continuous Integration
 
 These tests are designed to run in CI environments:
@@ -185,37 +181,36 @@ These tests are designed to run in CI environments:
 - Tests are deterministic and don't rely on external services
 - All network calls can be mocked or skipped with appropriate flags
 
-## Troubleshooting
-
-### Tests hanging
-- Check if any CLI commands are waiting for user input
-- Ensure `CI=true` is set or use `--ignore-agent-tools` flag
-
-### Permission errors
-- Ensure test-tmp directory is writable
-- Check file system permissions
-
-### Network errors
-- Use `--no-git` flag to skip Git operations if needed
-- Use `--ignore-agent-tools` to skip external tool checks
-
-## Contributing
-
-When adding new CLI features:
-1. Add corresponding tests to `cli.test.js`
-2. Update this README with test coverage
-3. Run tests locally before submitting PR
-4. Ensure all tests pass in CI
-
 ## Test Metrics
 
-Current test count: **60+ test cases**
+**Current test count: 90+ test cases**
 
 Coverage areas:
 - ✅ All CLI commands
 - ✅ All command-line flags
 - ✅ All AI agent integrations
 - ✅ File structure validation
+- ✅ Codebase analysis (structure, patterns, docs)
 - ✅ Error handling
 - ✅ Edge cases
+- ✅ Integration scenarios
 
+## Test Results Summary
+
+### CLI Tests
+- **60+ tests** covering initialization, commands, and file structure
+
+### Analyzer Tests
+- **30 tests** covering deep codebase analysis:
+  - 8 tests for structure analyzer
+  - 9 tests for pattern detector
+  - 10 tests for documentation parser
+  - 3 integration tests
+
+## Contributing
+
+When adding new CLI features:
+1. Add corresponding tests to appropriate test file
+2. Update this README with test coverage
+3. Run tests locally before submitting PR: `npm test`
+4. Ensure all tests pass in CI

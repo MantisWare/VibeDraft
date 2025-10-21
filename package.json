@@ -1,6 +1,6 @@
 {
   "name": "vibedraft-cli",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "VibeDraft CLI - Setup tool for VibeDraft spec-driven development projects",
   "main": "index.js",
   "type": "module",
@@ -16,9 +16,11 @@
     "url": "https://github.com/MantisWare/VibeDraft/issues"
   },
   "scripts": {
-    "test": "node --test test/cli.test.js",
-    "test:verbose": "node --test --test-reporter=spec test/cli.test.js",
-    "test:coverage": "node --test --experimental-test-coverage test/cli.test.js",
+    "test": "node --test test/*.test.js",
+    "test:cli": "node --test test/cli.test.js",
+    "test:analyzers": "node --test test/analyzers.test.js",
+    "test:verbose": "node --test --test-reporter=spec test/*.test.js",
+    "test:coverage": "node --test --experimental-test-coverage test/*.test.js",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "clean": "rm -rf test-tmp node_modules/.cache .genreleases",
