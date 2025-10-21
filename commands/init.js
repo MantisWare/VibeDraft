@@ -347,12 +347,12 @@ export async function initCommand(projectName, options) {
   }
 
   stepsLines.push(`${stepNum}. Start using slash commands with your AI agent:`);
-  
+
   // Add note if tech stack was detected
   if (options.detectedTechStack?.hasExistingApp === true) {
     stepsLines.push(`   ${chalk.yellow('Note:')} Constitution pre-populated with detected tech stack`);
   }
-  
+
   stepsLines.push(`   ${stepNum}.1 ${chalk.cyan('/vibedraft.constitution')} - Establish project principles`);
   stepsLines.push(`   ${stepNum}.2 ${chalk.cyan('/vibedraft.draft')} - Create baseline specification`);
   stepsLines.push(`   ${stepNum}.3 ${chalk.cyan('/vibedraft.plan')} - Create implementation plan`);

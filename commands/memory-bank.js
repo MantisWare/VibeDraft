@@ -66,7 +66,7 @@ export const memoryBankCommand = new Command('memory-bank')
           console.log(chalk.yellow('⚠ No AI agent directories detected'));
           console.log(chalk.cyan('  Available agents: cursor, claude, copilot, gemini, windsurf, qwen, opencode, q'));
           console.log('');
-          
+
           const { agent } = await inquirer.prompt([
             {
               type: 'list',
@@ -86,7 +86,7 @@ export const memoryBankCommand = new Command('memory-bank')
         // Interactive selection
         const detectedAgents = await detectAgentDirectories(projectPath);
         const allAgents = Object.keys(AGENT_MEMORY_BANK_CONFIG);
-        
+
         const { agent } = await inquirer.prompt([
           {
             type: 'list',
@@ -149,7 +149,7 @@ export const memoryBankCommand = new Command('memory-bank')
       const successful = results.filter(r => r.success);
       if (successful.length > 0) {
         console.log(chalk.cyan('Created Memory Banks:'));
-        for (const { agent, action, result } of successful) {
+        for (const { agent, action: _action, result } of successful) {
           const config = AGENT_MEMORY_BANK_CONFIG[agent];
           console.log(chalk.green(`  ✓ ${agent}: ${config.memoryBankDir}/`));
           if (result.files && result.files.length > 0) {
@@ -221,4 +221,3 @@ async function detectAgentDirectories(projectPath) {
 
   return detected;
 }
-
