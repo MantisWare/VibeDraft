@@ -91,6 +91,14 @@ Once installed, your AI coding assistant gets these powerful slash commands:
 
 ## 🎸 Features That Rock
 
+### 🚀 **Smart Memory Bank** (v1.2.x)
+- **Deep codebase analysis** automatically populates Memory Bank files
+- Detects project structure, architectural patterns, and frameworks
+- Parses documentation and extracts features
+- Identifies coding patterns and technical stack
+- Context-aware content for greenfield vs existing projects
+- No more empty templates - get meaningful content from day one!
+
 ### 🎨 **Spec-Driven Development**
 - Write specifications that AI can execute
 - Keep specs and code in perfect harmony
@@ -357,23 +365,35 @@ vibedraft memory-bank --update --agent cursor
 - **Files**: All 6 core files + Notes/ directory
 - **Use when**: Complex architecture, multiple stakeholders, project will evolve significantly
 
-### Intelligent Auto-Population 🤖
+### 🚀 Intelligent Auto-Population (v1.2.x)
 
-VibeDraft automatically populates Memory Bank with project data:
+VibeDraft now performs **deep codebase analysis** during initialization and automatically populates Memory Bank files with meaningful, project-specific content:
 
-**What gets auto-filled** (100% certain):
-- ✅ Project name (from directory)
-- ✅ Technology stack (from detection)
-- ✅ Core dependencies (from package.json)
-- ✅ Build tools and setup requirements
-- ✅ Current date and initialization status
+**What gets auto-filled** (based on analysis):
+- ✅ **Project Structure** - Directory organization, entry points, file counts
+- ✅ **Architectural Patterns** - MVC, Component-Based, Redux, Layered, etc.
+- ✅ **Framework Detection** - React, TypeScript, Jest, Next.js, and more
+- ✅ **Coding Patterns** - async/await, arrow functions, nullish coalescing, etc.
+- ✅ **Documentation Parsing** - Features and descriptions extracted from README
+- ✅ **Technology Stack** - Complete tech stack with versions
+- ✅ **Dependencies** - Core and dev dependencies
+- ✅ **Build Tools** - Detected build tools and configurations
+- ✅ **Project Context** - Context-aware content for greenfield vs existing projects
+- ✅ **Project name** - From directory
+- ✅ **Current date** - Initialization timestamp
 
-**What requires user input** (clear placeholders):
-- 📝 Project scope and deliverables
-- 📝 Target users and use cases
-- 📝 Success metrics and timeline
-- 📝 Architectural details
-- 📝 Business value and UX goals
+**What's inferred intelligently**:
+- 🎯 **Deliverables** - Based on project type (web-app, API, library, mobile)
+- 🎯 **Target Users** - Inferred from project type and purpose
+- 🎯 **Architecture Description** - Generated from detected patterns
+- 🎯 **Next Steps** - Context-aware based on existing vs new project
+
+**What still requires user input** (clear placeholders):
+- 📝 Specific business value and success metrics
+- 📝 Detailed UX goals and user journey
+- 📝 Project timeline and phases
+- 📝 Stakeholders and their roles
+- 📝 Technical constraints and requirements
 
 ### Multi-Agent Support 🌐
 
@@ -626,6 +646,36 @@ your-project/
 ├── README.md              # Your project README (created if doesn't exist)
 └── [your AI agent config] # .claude/, .cursor/, etc. (stays in root)
 ```
+
+### 🆕 v1.2.x Smart Analysis Edition
+
+**Deep Codebase Analysis & Intelligent Memory Bank Population** 🚀
+
+VibeDraft v1.2.x introduces groundbreaking smart analysis capabilities:
+
+**New Analyzer Modules**:
+- 🏗️ **Structure Analyzer** - Maps directory organization, identifies patterns, detects entry points
+- 🎨 **Pattern Detector** - Recognizes frameworks (React, TypeScript, Jest) and coding patterns (async/await, arrow functions)
+- 📚 **Documentation Parser** - Extracts features, descriptions, and architecture from README and docs
+
+**Smart Memory Bank Population**:
+- Memory Bank files now contain **real, actionable content** from initialization
+- Automatically populated with detected patterns, architecture, and project context
+- Context-aware generation (different for greenfield vs existing projects)
+- Intelligent inference of deliverables, target users, and next steps
+
+**90+ Comprehensive Tests**:
+- 30 new tests for analyzer modules (structure, patterns, documentation)
+- Full integration test coverage
+- Run `npm test` to see all tests in action!
+
+**Benefits**:
+- ✅ No more empty templates - get meaningful content immediately
+- ✅ AI assistants have accurate context from day one  
+- ✅ Reduced manual editing of Memory Bank files
+- ✅ Better starting point for AI-assisted development
+
+---
 
 ### 🆕 v1.0.0 Structure Changes
 

@@ -450,7 +450,7 @@
         <div class="badges">
           <span class="badge">📦 npm install -g vibedraft-cli</span>
           <span class="badge">🚀 vibedraft init my-project</span>
-          <span class="badge">🧠 v1.1.1 - Memory Bank Edition</span>
+          <span class="badge">🧠 v1.2.x - Smart Analysis Edition</span>
         </div>
       </div>
     </header>
@@ -572,9 +572,9 @@ vibedraft check</code></pre>
         </p>
 
         <div class="alert alert-success">
-          <strong>🆕 v1.1.1:</strong> The check command now displays version
-          information and attribution (MantisWare - Waldo Marais) along with an
-          enhanced visual design!
+          <strong>🆕 v1.2.x:</strong> Memory Bank files are now intelligently
+          populated with real project data! Deep codebase analysis automatically
+          detects your project structure, patterns, and technology stack.
         </div>
       </section>
 
@@ -588,10 +588,11 @@ vibedraft check</code></pre>
         </p>
 
         <div class="alert alert-info">
-          <strong>🆕 v1.1.0:</strong> Memory Bank system now automatically
-          created during initialization! It provides persistent project context
-          across AI sessions. Use the new
-          <code>/vibedraft.memory-bank</code> command to manage it.
+          <strong>🆕 v1.2.x:</strong> Memory Bank system now includes
+          intelligent auto-population! During initialization, VibeDraft performs
+          deep codebase analysis to automatically fill Memory Bank files with
+          meaningful, project-specific content including detected patterns,
+          architecture, and features.
         </div>
 
         <div class="workflow-step">
@@ -1045,17 +1046,56 @@ vibedraft memory-bank --agent claude --minimal
 # Update existing Memory Bank
 vibedraft memory-bank --update --agent cursor</code></pre>
 
-        <h3>Intelligent Auto-Population</h3>
+        <h3>🚀 Intelligent Auto-Population (v1.2.x)</h3>
         <p style="margin: 20px 0">
-          VibeDraft automatically populates Memory Bank files with:
+          VibeDraft now performs <strong>deep codebase analysis</strong> during
+          initialization and automatically populates Memory Bank files with:
         </p>
         <ul style="margin-left: 30px; line-height: 2">
-          <li>✅ Project name (from directory)</li>
-          <li>✅ Technology stack (from detection)</li>
-          <li>✅ Core dependencies (from package.json)</li>
-          <li>✅ Build tools and setup requirements</li>
-          <li>✅ Current date and initialization status</li>
+          <li>
+            ✅ <strong>Project Structure</strong> - Directory organization,
+            entry points, patterns
+          </li>
+          <li>
+            ✅ <strong>Architectural Patterns</strong> - MVC, Component-Based,
+            Redux, etc.
+          </li>
+          <li>
+            ✅ <strong>Framework Detection</strong> - React, TypeScript, Jest,
+            and more
+          </li>
+          <li>
+            ✅ <strong>Coding Patterns</strong> - Modern JavaScript patterns in
+            use
+          </li>
+          <li>
+            ✅ <strong>Documentation Parsing</strong> - Features extracted from
+            README
+          </li>
+          <li>
+            ✅ <strong>Technology Stack</strong> - Complete tech stack with
+            versions
+          </li>
+          <li>✅ <strong>Dependencies</strong> - Core and dev dependencies</li>
+          <li>
+            ✅ <strong>Build Tools</strong> - Detected build tools and
+            configurations
+          </li>
+          <li>
+            ✅ <strong>Context-Aware Content</strong> - Different content for
+            greenfield vs existing projects
+          </li>
         </ul>
+
+        <div class="alert alert-tip">
+          <strong>💡 New in v1.2.x:</strong>
+          <p style="margin-top: 10px">
+            Memory Bank files are no longer empty templates! They now contain
+            actionable, project-specific content based on deep analysis of your
+            codebase. This means AI assistants have immediate, accurate context
+            about your project from the moment you initialize.
+          </p>
+        </div>
 
         <div class="alert alert-tip">
           <strong>💡 Benefits:</strong>
@@ -1098,7 +1138,7 @@ vibedraft memory-bank --update --agent cursor</code></pre>
           <div class="feature-card">
             <div class="feature-icon">🧠</div>
             <h4>
-              Memory Bank System
+              Smart Memory Bank
               <span
                 class="badge"
                 style="
@@ -1106,13 +1146,14 @@ vibedraft memory-bank --update --agent cursor</code></pre>
                   color: white;
                   font-size: 0.7rem;
                 "
-                >NEW</span
+                >v1.2.x</span
               >
             </h4>
             <p>
-              Persistent project context for AI assistants. Automatically
-              created and intelligently populated with your project's tech stack
-              and structure.
+              Persistent project context with intelligent auto-population. Deep
+              codebase analysis automatically detects your project structure,
+              architectural patterns, frameworks, and coding styles. Memory Bank
+              files contain real, actionable content from initialization.
             </p>
           </div>
 
@@ -1185,11 +1226,23 @@ vibedraft memory-bank --update --agent cursor</code></pre>
 
           <div class="feature-card">
             <div class="feature-icon">🔍</div>
-            <h4>Tech Stack Detection</h4>
+            <h4>
+              Deep Codebase Analysis
+              <span
+                class="badge"
+                style="
+                  background: var(--success);
+                  color: white;
+                  font-size: 0.7rem;
+                "
+                >v1.2.x</span
+              >
+            </h4>
             <p>
-              Automatically detects existing applications, frameworks,
-              languages, and dependencies. Populates constitution and Memory
-              Bank intelligently.
+              Performs comprehensive project analysis: structure mapping,
+              pattern detection, framework identification, and documentation
+              parsing. Automatically populates Memory Bank with meaningful,
+              project-specific content.
             </p>
           </div>
         </div>
@@ -1520,7 +1573,7 @@ git commit -m "Initial commit"</code></pre>
       <div class="container">
         <p style="font-size: 1.2rem; margin-bottom: 15px">✨ Keep Vibing! ✨</p>
         <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px">
-          VibeDraft v1.1.1 - Memory Bank Edition
+          VibeDraft v1.2.x - Smart Analysis Edition
         </p>
         <p>
           Built with 💜 by
@@ -1536,8 +1589,8 @@ git commit -m "Initial commit"</code></pre>
           Where specs meet vibes, and code flows like magic 🌊
         </p>
         <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6">
-          🆕 Latest: Memory Bank system • Tech stack detection • Enhanced check
-          command
+          🆕 Latest: Smart Memory Bank population • Deep codebase analysis •
+          Pattern detection • Structure analyzer • 30+ new tests
         </p>
       </div>
     </footer>
